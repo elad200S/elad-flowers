@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root {
+  --color-cream: #f7f3ee;
+  --color-bordeaux: #6b1e2e;
+  --color-bordeaux-dark: #531522;
+  --color-powder: #e8c9c1;
+  --color-charcoal: #2b2b2b;
+  --color-gold: #b89b6a;
+}
+
+@theme inline {
+  --color-cream: var(--color-cream);
+  --color-bordeaux: var(--color-bordeaux);
+  --color-bordeaux-dark: var(--color-bordeaux-dark);
+  --color-powder: var(--color-powder);
+  --color-charcoal: var(--color-charcoal);
+  --color-gold: var(--color-gold);
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-charcoal);
+}
+
+/* thin gold divider used throughout */
+.gold-line {
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.6;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--color-gold) 30%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  background: white;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--color-bordeaux);
+}
