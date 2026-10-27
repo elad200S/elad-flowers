@@ -2,9 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Heart } from "lucide-react";
 import type { Product } from "@/lib/types";
+import { useWishlist } from "@/context/WishlistContext";
 
 export default function ProductCard({ product }: { product: Product }) {
+  const { isWishlisted, toggle } = useWishlist();
+  const wishlisted = isWishlisted(product.slug);
+
   return (
     <Link href={`/products/${product.slug}`} className="group block">
       <div className="relative aspect-square overflow-hidden bg-neutral-100">
@@ -20,6 +25,18 @@ export default function ProductCard({ product }: { product: Product }) {
             Best Seller
           </span>
         )}
+        <button
+          type="button"
+          aria-label={wishlisted ? "הסר מרשימת המשאלות" : "הוסף לרשימת המשאלות"}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggle(product.slug);
+          }}
+          className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center bg-paper/90 hover:bg-paper transition-colors"
+        >
+          <Heart size={15} strokeWidth={1.5} className={wishlisted ? "fill-ink text-ink" : "text-ink"} />
+        </button>
       </div>
       <div className="pt-3 text-center">
         <h3 className="text-sm text-ink">{product.title}</h3>

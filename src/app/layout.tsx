@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
@@ -68,11 +70,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(parcelDeliveryJsonLd) }}
         />
         <CartProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <WhatsAppButton />
-          <CartDrawer />
+          <WishlistProvider>
+            <AnnouncementBar />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <WhatsAppButton />
+            <CartDrawer />
+          </WishlistProvider>
         </CartProvider>
       </body>
     </html>
