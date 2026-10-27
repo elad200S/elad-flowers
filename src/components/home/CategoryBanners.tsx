@@ -6,8 +6,8 @@ export default function CategoryBanners() {
   return (
     <section className="py-16 md:py-24">
       <div className="text-center mb-10 px-4">
-        <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">קנייה לפי סוג פרח</h2>
-        <div className="gold-line w-16 mx-auto mt-4" />
+        <h2 className="font-serif text-3xl sm:text-4xl text-ink">קנייה לפי סוג פרח</h2>
+        <div className="hidden w-16 mx-auto mt-4" />
       </div>
 
       <div className="flex flex-col">

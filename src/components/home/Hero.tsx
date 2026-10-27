@@ -1,63 +1,59 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative h-[92vh] min-h-[560px] w-full overflow-hidden">
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="https://images.unsplash.com/photo-1771099077435-6dbcac9fd65e?auto=format&fit=crop&w=1920&q=80"
-      >
-        <source src="/hero-video.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-black/40" />
-
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="font-serif text-white text-5xl sm:text-6xl md:text-7xl tracking-wide"
-        >
-          פרחים שמרגשים
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="text-white/90 mt-5 text-lg sm:text-xl max-w-xl"
-        >
-          זרים בעיצוב אישי עם משלוח עד הבית בחולון והסביבה
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 mt-9"
-        >
-          <Link
-            href="/category/bouquets"
-            className="bg-bordeaux text-white px-8 py-3.5 rounded-full hover:bg-bordeaux-dark transition-colors"
-          >
-            לבחירת זר
-          </Link>
-          <a
-            href="https://wa.me/972000000000"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-white text-white px-8 py-3.5 rounded-full hover:bg-white hover:text-bordeaux transition-colors"
-          >
-            הזמנה בוואטסאפ
-          </a>
-        </motion.div>
+    <section className="relative w-full">
+      <div dir="ltr" className="grid grid-cols-1 md:grid-cols-2 h-[62vh] md:h-[88vh]">
+        <div className="relative h-full">
+          <Image
+            src="https://images.unsplash.com/photo-1519915149845-399e7e57e3c9?auto=format&fit=crop&w=1400&q=80"
+            alt="דוגמנית אוחזת זר פרחים"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="relative h-full">
+          <Image
+            src="https://images.unsplash.com/photo-1532614208657-10b8d7815f40?auto=format&fit=crop&w=1400&q=80"
+            alt="תקריב על עלי כותרת"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
       </div>
+
+      <motion.h1
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9 }}
+        className="pointer-events-none absolute top-[10%] md:top-[14%] inset-x-0 text-center font-serif text-white leading-none px-2
+          text-[13vw] md:text-[7.5vw]"
+        style={{ textShadow: "0 2px 40px rgba(0,0,0,0.35)" }}
+      >
+        אלעד פרחים
+      </motion.h1>
+
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.3 }}
+        className="absolute bottom-6 right-6 md:bottom-10 md:right-10"
+      >
+        <Link
+          href="/category/bouquets"
+          className="inline-block bg-ink text-paper text-xs tracked-xs uppercase px-7 py-3.5 hover:bg-ink/85 transition-colors"
+        >
+          לקטלוג
+        </Link>
+      </motion.div>
     </section>
   );
 }

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
-import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
@@ -63,13 +62,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       dir="rtl"
       className={`${heading.variable} ${body.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-cream text-charcoal">
+      <body className="min-h-full flex flex-col font-sans bg-paper text-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(parcelDeliveryJsonLd) }}
         />
         <CartProvider>
-          <AnnouncementBar />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

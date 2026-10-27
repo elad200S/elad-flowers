@@ -17,15 +17,15 @@ export default function VideoGallery() {
   return (
     <section className="py-16 md:py-24">
       <div className="text-center mb-10 px-4">
-        <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">מהסטודיו שלנו</h2>
-        <div className="gold-line w-16 mx-auto mt-4" />
+        <h2 className="font-serif text-3xl sm:text-4xl text-ink">מהסטודיו שלנו</h2>
+        <div className="hidden w-16 mx-auto mt-4" />
       </div>
 
       <div className="flex gap-4 overflow-x-auto no-scrollbar px-4 sm:px-6 snap-x snap-mandatory">
         {reels.map((id, i) => (
           <div
             key={id}
-            className="relative shrink-0 w-[42%] sm:w-[26%] md:w-[20%] aspect-[9/16] rounded-xl overflow-hidden snap-start bg-charcoal"
+            className="relative shrink-0 w-[42%] sm:w-[26%] md:w-[20%] aspect-[9/16] overflow-hidden snap-start bg-ink"
           >
             <Image
               src={`https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=600&q=80`}
@@ -36,7 +36,7 @@ export default function VideoGallery() {
             />
             <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
               <div className="w-11 h-11 rounded-full bg-white/85 flex items-center justify-center">
-                <Play size={18} className="text-bordeaux fill-bordeaux" />
+                <Play size={18} className="text-ink fill-ink" />
               </div>
             </div>
           </div>

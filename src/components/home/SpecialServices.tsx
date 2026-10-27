@@ -7,8 +7,8 @@ export default function SpecialServices() {
     <section className="py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center mb-10">
-          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">שירותים מיוחדים</h2>
-          <div className="gold-line w-16 mx-auto mt-4" />
+          <h2 className="font-serif text-3xl sm:text-4xl text-ink">שירותים מיוחדים</h2>
+          <div className="hidden w-16 mx-auto mt-4" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

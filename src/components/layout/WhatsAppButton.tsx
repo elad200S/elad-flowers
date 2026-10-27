@@ -7,9 +7,9 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="הזמנה בוואטסאפ"
-      className="fixed bottom-5 left-5 z-40 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:scale-105 transition-transform"
+      className="fixed bottom-5 left-5 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-ink text-paper shadow-lg hover:scale-105 transition-transform"
     >
-      <MessageCircle size={28} strokeWidth={1.75} fill="white" className="text-[#25D366]" />
+      <MessageCircle size={20} strokeWidth={1.4} />
     </a>
   );
 }

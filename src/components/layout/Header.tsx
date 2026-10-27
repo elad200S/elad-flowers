@@ -6,12 +6,11 @@ import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const navLinks = [
-  { href: "/category/bouquets", label: "זרים" },
-  { href: "/category/weddings", label: "חתונות" },
-  { href: "/category/corporate", label: "מתנות לעסקים" },
-  { href: "/category/plants", label: "עציצים" },
+  { href: "/category/bouquets", label: "קטלוג" },
+  { href: "/category/new", label: "חדשים" },
+  { href: "/category/accessories", label: "אקססוריז" },
   { href: "/about", label: "אודות" },
-  { href: "/contact", label: "צור קשר" },
+  { href: "/contact", label: "קשר" },
 ];
 
 export default function Header() {
@@ -19,52 +18,49 @@ export default function Header() {
   const { itemCount, openCart } = useCart();
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-cream/90 backdrop-blur-sm border-b border-gold/20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 h-20 flex items-center justify-between">
-        <button
-          className="md:hidden p-2 text-charcoal"
-          aria-label="תפריט"
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+    <header className="sticky top-0 z-40 w-full bg-paper border-b border-black/5">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <button
+            className="md:hidden p-1 text-ink"
+            aria-label="תפריט"
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            {menuOpen ? <X size={20} strokeWidth={1.25} /> : <Menu size={20} strokeWidth={1.25} />}
+          </button>
+          <button aria-label="חיפוש" className="hidden sm:block text-ink/70 hover:text-ink transition-colors">
+            <Search size={17} strokeWidth={1.25} />
+          </button>
+          <button
+            aria-label="סל קניות"
+            onClick={openCart}
+            className="relative text-ink/70 hover:text-ink transition-colors"
+          >
+            <ShoppingBag size={17} strokeWidth={1.25} />
+            {itemCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-ink text-paper text-[9px] rounded-full w-3.5 h-3.5 flex items-center justify-center">
+                {itemCount}
+              </span>
+            )}
+          </button>
+        </div>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-charcoal hover:text-bordeaux transition-colors"
+              className="text-[11px] tracked-xs uppercase text-ink/70 hover:text-ink transition-colors"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <Link
-          href="/"
-          className="font-serif text-2xl sm:text-3xl tracking-wide text-bordeaux absolute left-1/2 -translate-x-1/2"
-        >
+        <Link href="/" className="font-serif text-lg tracking-wide text-ink md:hidden">
           אלעד פרחים
         </Link>
-
-        <div className="flex items-center gap-3">
-          <button aria-label="חיפוש" className="p-2 text-charcoal hover:text-bordeaux transition-colors">
-            <Search size={20} />
-          </button>
-          <button
-            aria-label="סל קניות"
-            onClick={openCart}
-            className="relative p-2 text-charcoal hover:text-bordeaux transition-colors"
-          >
-            <ShoppingBag size={20} />
-            {itemCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 bg-bordeaux text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
-                {itemCount}
-              </span>
-            )}
-          </button>
-        </div>
+        <div className="hidden md:block w-5" />
       </div>
 
       {menuOpen && (
@@ -74,7 +70,7 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="py-2 text-charcoal hover:text-bordeaux transition-colors border-b border-gold/10 text-sm"
+              className="py-2.5 text-ink/80 hover:text-ink transition-colors border-b border-black/5 text-xs tracked-xs uppercase"
             >
               {link.label}
             </Link>

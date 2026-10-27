@@ -6,8 +6,8 @@ export default function RecommendedCarousel() {
     <section className="py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center mb-10">
-          <h2 className="font-serif text-3xl sm:text-4xl text-charcoal">הזרים האהובים שלנו</h2>
-          <div className="gold-line w-16 mx-auto mt-4" />
+          <h2 className="font-serif text-3xl sm:text-4xl text-ink">הזרים האהובים שלנו</h2>
+          <div className="hidden w-16 mx-auto mt-4" />
         </div>
 
         <div className="flex gap-5 overflow-x-auto no-scrollbar px-1 snap-x snap-mandatory">
