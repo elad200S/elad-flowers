@@ -10,8 +10,8 @@ export default function Hero() {
       <div dir="ltr" className="grid grid-cols-1 md:grid-cols-2 h-[62vh] md:h-[88vh]">
         <div className="relative h-full">
           <Image
-            src="https://images.unsplash.com/photo-1519915149845-399e7e57e3c9?auto=format&fit=crop&w=1400&q=80"
-            alt="דוגמנית אוחזת זר פרחים"
+            src="/hero/model-bag.png"
+            alt="דוגמנית אוחזת תיק זרים"
             fill
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -20,7 +20,7 @@ export default function Hero() {
         </div>
         <div className="relative h-full">
           <Image
-            src="https://images.unsplash.com/photo-1532614208657-10b8d7815f40?auto=format&fit=crop&w=1400&q=80"
+            src="/hero/flower-macro.png"
             alt="תקריב על עלי כותרת"
             fill
             priority
