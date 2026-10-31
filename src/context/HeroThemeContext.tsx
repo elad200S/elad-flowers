@@ -2,45 +2,19 @@
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export const heroThemes = [
-  {
-    key: "pink",
-    label: "ורוד",
-    accent: "#E7C9C3",
-    panels: {
-      left: "/hero/rotator/pink-left.jpg",
-      mid: "/hero/rotator/pink-mid.jpg",
-      right: "/hero/rotator/pink-right.jpg",
-    },
-  },
-  {
-    key: "blue",
-    label: "כחול",
-    accent: "#C7D9E8",
-    panels: {
-      left: "/hero/rotator/blue-left.png",
-      mid: "/hero/rotator/blue-mid.png",
-      right: "/hero/rotator/blue-right.png",
-    },
-  },
-  {
-    key: "green",
-    label: "ירוק",
-    accent: "#D4E2C8",
-    panels: {
-      left: "/hero/rotator/green-left.png",
-      mid: "/hero/rotator/green-mid.png",
-      right: "/hero/rotator/green-right.png",
-    },
-  },
-] as const;
+export const heroBeats = 3;
+
+// One accent per rotation beat (not tied to a single "theme" anymore —
+// each hero panel now cycles its own color independently; this just
+// drives the shared chrome: announcement bar, header underline, CTA).
+export const heroAccents = ["#D4E2C8", "#C7D9E8", "#E7C9C3"];
 
 const ROTATE_MS = 4500;
 
 interface HeroThemeContextValue {
   index: number;
   setIndex: (i: number) => void;
-  theme: (typeof heroThemes)[number];
+  accent: string;
 }
 
 const HeroThemeContext = createContext<HeroThemeContextValue | null>(null);
@@ -50,13 +24,13 @@ export function HeroThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % heroThemes.length);
+      setIndex((i) => (i + 1) % heroBeats);
     }, ROTATE_MS);
     return () => clearInterval(id);
   }, [index]);
 
   return (
-    <HeroThemeContext.Provider value={{ index, setIndex, theme: heroThemes[index] }}>
+    <HeroThemeContext.Provider value={{ index, setIndex, accent: heroAccents[index] }}>
       {children}
     </HeroThemeContext.Provider>
   );

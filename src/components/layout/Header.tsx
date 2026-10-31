@@ -7,9 +7,10 @@ import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useHeroTheme } from "@/context/HeroThemeContext";
+import SearchOverlay from "./SearchOverlay";
 
 const navLinks = [
-  { href: "/category/bouquets", label: "קטלוג" },
+  { href: "/shop", label: "קטלוג" },
   { href: "/category/new", label: "חדשים" },
   { href: "/category/accessories", label: "אקססוריז" },
   { href: "/about", label: "אודות" },
@@ -18,9 +19,10 @@ const navLinks = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount, openCart } = useCart();
   const { count: wishlistCount } = useWishlist();
-  const { theme } = useHeroTheme();
+  const { accent } = useHeroTheme();
 
   return (
     <header className="sticky top-0 z-40 w-full bg-paper border-b border-black/5 relative">
@@ -51,7 +53,11 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button aria-label="חיפוש" className="hidden sm:block text-ink/70 hover:text-ink transition-colors">
+          <button
+            aria-label="חיפוש"
+            onClick={() => setSearchOpen(true)}
+            className="text-ink/70 hover:text-ink transition-colors"
+          >
             <Search size={17} strokeWidth={1.25} />
           </button>
           <Link
@@ -97,10 +103,12 @@ export default function Header() {
       )}
 
       <motion.div
-        animate={{ backgroundColor: theme.accent }}
+        animate={{ backgroundColor: accent }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="absolute bottom-[-1px] inset-x-0 h-[2px]"
       />
+
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

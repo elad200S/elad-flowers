@@ -3,9 +3,31 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { heroThemes, useHeroTheme } from "@/context/HeroThemeContext";
+import { heroBeats, useHeroTheme } from "@/context/HeroThemeContext";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+// Each position keeps its own subject and never swaps place with another
+// position — only the color/beat cycles, independently per position.
+const leftSequence = [
+  { src: "/hero/rotator/green-left.png", alt: "תקריב פרח ירוק" },
+  { src: "/hero/rotator/blue-left.png", alt: "תקריב פרח כחול" },
+  { src: "/hero/rotator/pink-left.jpg", alt: "תקריב פרח ורוד" },
+];
+
+const midSequence = [
+  { src: "/hero/rotator/blue-mid.png", alt: "דוגמנית בחליפה ורודה אוחזת תיק זרים" },
+  { src: "/hero/model-bag.png", alt: "דוגמנית בחליפה ירוקה אוחזת תיק זרים" },
+  { src: "/hero/rotator/pink-mid.jpg", alt: "דוגמנית בחליפה כחולה אוחזת תיק זרים" },
+];
+
+// No pink vase-arrangement shot exists among the uploaded references yet —
+// reusing one of the green ones as a placeholder until a real one is supplied.
+const rightSequence = [
+  { src: "/hero/rotator/green-right.png", alt: "זר כחול באגרטל" },
+  { src: "/hero/rotator/blue-right.png", alt: "זר ורוד באגרטל (placeholder)" },
+  { src: "/hero/rotator/pink-right.jpg", alt: "זר ירוק באגרטל" },
+];
 
 function Panel({ src, alt, from }: { src: string; alt: string; from: "top" | "bottom" }) {
   const y = from === "top" ? -40 : 40;
@@ -24,24 +46,27 @@ function Panel({ src, alt, from }: { src: string; alt: string; from: "top" | "bo
 }
 
 export default function Hero() {
-  const { theme, index, setIndex } = useHeroTheme();
+  const { index, setIndex, accent } = useHeroTheme();
+  const left = leftSequence[index];
+  const mid = midSequence[index];
+  const right = rightSequence[index];
 
   return (
     <section className="relative w-full">
       <div className="grid grid-cols-3 h-[62vh] md:h-[88vh]">
         <div className="relative h-full overflow-hidden">
           <AnimatePresence initial={false}>
-            <Panel key={theme.key} src={theme.panels.left} alt="דוגמנית אוחזת תיק זרים" from="top" />
+            <Panel key={left.src} src={left.src} alt={left.alt} from="top" />
           </AnimatePresence>
         </div>
         <div className="relative h-full overflow-hidden">
           <AnimatePresence initial={false}>
-            <Panel key={theme.key} src={theme.panels.mid} alt="זר פרחים" from="bottom" />
+            <Panel key={mid.src} src={mid.src} alt={mid.alt} from="bottom" />
           </AnimatePresence>
         </div>
         <div className="relative h-full overflow-hidden">
           <AnimatePresence initial={false}>
-            <Panel key={theme.key} src={theme.panels.right} alt="תקריב על עלי כותרת" from="top" />
+            <Panel key={right.src} src={right.src} alt={right.alt} from="top" />
           </AnimatePresence>
         </div>
       </div>
@@ -55,30 +80,30 @@ export default function Hero() {
       </h1>
 
       <motion.div
-        animate={{ backgroundColor: theme.accent, boxShadow: `0 0 28px ${theme.accent}80` }}
+        animate={{ backgroundColor: accent, boxShadow: `0 0 28px ${accent}80` }}
         transition={{ duration: 0.8, ease: EASE }}
         className="absolute bottom-6 right-6 md:bottom-10 md:right-10"
       >
-        <Link
-          href="/category/bouquets"
-          className="block text-ink text-xs tracked-xs uppercase px-7 py-3.5"
-        >
+        <Link href="/shop" className="block text-ink text-xs tracked-xs uppercase px-7 py-3.5">
           לקטלוג
         </Link>
       </motion.div>
 
-      {/* Manual theme selectors */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-5">
-        {heroThemes.map((t, i) => (
+      {/* Manual beat selector */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3">
+        {Array.from({ length: heroBeats }).map((_, i) => (
           <button
-            key={t.key}
+            key={i}
             type="button"
+            aria-label={`ערכה ${i + 1}`}
             onClick={() => setIndex(i)}
-            className="text-[11px] tracked-xs uppercase transition-colors"
-            style={{ color: "white", opacity: i === index ? 1 : 0.55 }}
-          >
-            {t.label}
-          </button>
+            className="w-1.5 h-1.5 rounded-full transition-all"
+            style={{
+              backgroundColor: "white",
+              opacity: i === index ? 1 : 0.4,
+              transform: i === index ? "scale(1.6)" : "scale(1)",
+            }}
+          />
         ))}
       </div>
     </section>

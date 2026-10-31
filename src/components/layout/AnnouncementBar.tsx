@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { useHeroTheme } from "@/context/HeroThemeContext";
 
 export default function AnnouncementBar() {
-  const { theme } = useHeroTheme();
+  const { accent } = useHeroTheme();
 
   return (
     <motion.div
-      animate={{ backgroundColor: theme.accent }}
+      animate={{ backgroundColor: accent }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="text-center py-2 px-4"
     >
