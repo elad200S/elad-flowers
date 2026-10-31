@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
+import { useHeroTheme } from "@/context/HeroThemeContext";
 
 const navLinks = [
   { href: "/category/bouquets", label: "קטלוג" },
@@ -18,9 +20,10 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { itemCount, openCart } = useCart();
   const { count: wishlistCount } = useWishlist();
+  const { theme } = useHeroTheme();
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-paper border-b border-black/5">
+    <header className="sticky top-0 z-40 w-full bg-paper border-b border-black/5 relative">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button
@@ -92,6 +95,12 @@ export default function Header() {
           ))}
         </nav>
       )}
+
+      <motion.div
+        animate={{ backgroundColor: theme.accent }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-[-1px] inset-x-0 h-[2px]"
+      />
     </header>
   );
 }

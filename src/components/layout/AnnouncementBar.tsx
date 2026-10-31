@@ -1,9 +1,20 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useHeroTheme } from "@/context/HeroThemeContext";
+
 export default function AnnouncementBar() {
+  const { theme } = useHeroTheme();
+
   return (
-    <div className="bg-ink text-paper text-center py-2 px-4">
-      <p className="text-[11px] tracked-xs uppercase">
-        משלוחים באותו היום בחולון והסביבה · הזמנה עד השעה 14:00
+    <motion.div
+      animate={{ backgroundColor: theme.accent }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="text-center py-2 px-4"
+    >
+      <p className="text-[11px] tracked-xs uppercase text-ink">
+        משלוח היום בחולון והסביבה · צילום הזר לפני משלוח · תשלום מאובטח
       </p>
-    </div>
+    </motion.div>
   );
 }
