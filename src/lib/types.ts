@@ -1,5 +1,13 @@
 export type Size = "S" | "M" | "L";
 
+export type ProductType =
+  | "bouquet"
+  | "arrangement"
+  | "plant"
+  | "giftset"
+  | "balloon"
+  | "chocolate-wine";
+
 export interface SizeOption {
   size: Size;
   label: string;
@@ -20,6 +28,7 @@ export interface Product {
   description: string;
   longDescription: string;
   category: string;
+  productType: ProductType;
   images: string[];
   startingPrice: number;
   sizes: SizeOption[];
@@ -36,6 +45,13 @@ export interface Service {
   slug: string;
   title: string;
   image: string;
+}
+
+export interface EventCollection {
+  slug: string;
+  title: string;
+  image: string;
+  productSlugs: string[];
 }
 
 export interface Testimonial {

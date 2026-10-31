@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
+import { PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 
 function InstagramIcon() {
   return (
@@ -24,7 +25,7 @@ export default function Footer() {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="אינסטגרם" className="text-ink/70 hover:text-ink transition-colors">
               <InstagramIcon />
             </a>
-            <a href="https://wa.me/972000000000" target="_blank" rel="noopener noreferrer" aria-label="וואטסאפ" className="text-ink/70 hover:text-ink transition-colors">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="וואטסאפ" className="text-ink/70 hover:text-ink transition-colors">
               <MessageCircle size={18} strokeWidth={1.4} />
             </a>
           </div>
@@ -38,6 +39,9 @@ export default function Footer() {
             <li>ראשון לציון</li>
             <li>תל אביב (בתוספת תשלום)</li>
           </ul>
+          <Link href="/delivery" className="inline-block mt-4 text-[11px] tracked-xs uppercase text-ink/70 hover:text-ink transition-colors border-b border-ink/30">
+            מידע מלא על משלוחים
+          </Link>
         </div>
 
         <div>
@@ -53,7 +57,7 @@ export default function Footer() {
           <p className="text-[11px] tracked-xs uppercase text-ink/50 mb-4">צור קשר</p>
           <ul className="space-y-2 text-sm text-ink/70">
             <li>רחוב סוקולוב 20, חולון</li>
-            <li dir="ltr" className="text-right">03-0000000</li>
+            <li dir="ltr" className="text-right">{PHONE_DISPLAY}</li>
             <li>info@eladflowers.co.il</li>
           </ul>
           <p className="text-[11px] tracked-xs uppercase text-ink/50 mt-6 mb-2">אמצעי תשלום</p>
@@ -64,9 +68,11 @@ export default function Footer() {
       <div className="border-t border-black/10">
         <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink/40">
           <p>© 2026 אלעד פרחים. כל הזכויות שמורות.</p>
-          <div className="flex gap-4">
-            <Link href="/terms" className="hover:text-ink transition-colors">תנאי שימוש</Link>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link href="/terms" className="hover:text-ink transition-colors">תקנון</Link>
             <Link href="/privacy" className="hover:text-ink transition-colors">פרטיות</Link>
+            <Link href="/cancellations" className="hover:text-ink transition-colors">ביטולים והחזרות</Link>
+            <Link href="/accessibility" className="hover:text-ink transition-colors">נגישות</Link>
           </div>
         </div>
       </div>

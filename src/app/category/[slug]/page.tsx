@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { products, categories, services } from "@/lib/data";
 import ProductCard from "@/components/ProductCard";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 const titles: Record<string, string> = {
   bouquets: "כל הזרים",
@@ -28,7 +29,7 @@ export default async function CategoryPage({
         <div className="text-center py-16">
           <p className="text-ink/70">הקולקציה הזו בדרך אלינו, אבל אפשר כבר להתאים זר אישית.</p>
           <a
-            href="https://wa.me/972000000000"
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-6 bg-ink text-white px-8 py-3 hover:bg-ink/85 transition-colors"

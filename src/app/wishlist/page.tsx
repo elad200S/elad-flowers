@@ -17,7 +17,7 @@ export default function WishlistPage() {
         <div className="text-center px-4">
           <p className="text-ink/60 text-sm mb-6">עדיין לא הוספת זרים לרשימת המשאלות.</p>
           <Link
-            href="/category/bouquets"
+            href="/shop"
             className="inline-block bg-ink text-paper text-xs tracked-xs uppercase px-7 py-3.5 hover:bg-ink/85 transition-colors"
           >
             לקטלוג

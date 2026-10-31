@@ -6,6 +6,7 @@ import { Check } from "lucide-react";
 import type { Product, Size } from "@/lib/types";
 import { addOns as allAddOns } from "@/lib/data";
 import { useCart } from "@/context/CartContext";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 export default function ProductClient({ product }: { product: Product }) {
   const { addItem } = useCart();
@@ -161,7 +162,7 @@ export default function ProductClient({ product }: { product: Product }) {
                 {added ? "נוסף לסל ✓" : `הוסיפו לסל · ${total} ₪`}
               </button>
               <a
-                href="https://wa.me/972000000000"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full text-center border border-ink text-ink py-3.5 text-sm tracked-xs uppercase hover:bg-ink hover:text-paper transition-colors"
