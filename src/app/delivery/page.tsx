@@ -1,11 +1,5 @@
 import PolicyPage from "@/components/layout/PolicyPage";
-
-const zones = [
-  { city: "חולון", cost: "משלוח חינם", time: "באותו היום בהזמנה עד 14:00" },
-  { city: "בת ים", cost: "20 ₪", time: "באותו היום בהזמנה עד 14:00" },
-  { city: "ראשון לציון", cost: "25 ₪", time: "באותו היום בהזמנה עד 14:00" },
-  { city: "תל אביב", cost: "35 ₪", time: "עד יום עסקים אחד" },
-];
+import { deliveryZones } from "@/lib/data";
 
 export default function DeliveryPage() {
   return (
@@ -27,10 +21,10 @@ export default function DeliveryPage() {
               </tr>
             </thead>
             <tbody>
-              {zones.map((z) => (
+              {deliveryZones.map((z) => (
                 <tr key={z.city} className="border-t border-black/10">
                   <td className="py-2.5 px-3 text-ink">{z.city}</td>
-                  <td className="py-2.5 px-3">{z.cost}</td>
+                  <td className="py-2.5 px-3">{z.costLabel}</td>
                   <td className="py-2.5 px-3">{z.time}</td>
                 </tr>
               ))}

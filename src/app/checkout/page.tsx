@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { deliveryZones, RUSH_DELIVERY_COST } from "@/lib/data";
 
 const paymentOptions = [
   { id: "bit", label: "ביט" },
@@ -15,7 +16,13 @@ const paymentOptions = [
 export default function CheckoutPage() {
   const { items, subtotal } = useCart();
   const [payment, setPayment] = useState("bit");
+  const [city, setCity] = useState(deliveryZones[0].city);
+  const [rushDelivery, setRushDelivery] = useState(false);
   const [placed, setPlaced] = useState(false);
+
+  const today = useMemo(() => new Date().toISOString().split("T")[0], []);
+  const selectedZone = deliveryZones.find((z) => z.city === city) ?? deliveryZones[0];
+  const total = subtotal + selectedZone.cost + (rushDelivery ? RUSH_DELIVERY_COST : 0);
 
   if (placed) {
     return (
@@ -76,7 +83,13 @@ export default function CheckoutPage() {
         <section>
           <h2 className="font-serif text-xl text-ink mb-4">כתובת למשלוח</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input required placeholder="עיר" className="input sm:col-span-1" />
+            <select required value={city} onChange={(e) => setCity(e.target.value)} className="input sm:col-span-1">
+              {deliveryZones.map((z) => (
+                <option key={z.city} value={z.city}>
+                  {z.city} ({z.costLabel})
+                </option>
+              ))}
+            </select>
             <input required placeholder="רחוב ומספר בית" className="input sm:col-span-1" />
             <input placeholder="קומה / דירה (לא חובה)" className="input sm:col-span-2" />
           </div>
@@ -84,7 +97,20 @@ export default function CheckoutPage() {
 
         <section>
           <h2 className="font-serif text-xl text-ink mb-4">תאריך משלוח</h2>
-          <input required type="date" className="input sm:w-1/2" />
+          <input required type="date" min={today} className="input sm:w-1/2" />
+
+          <label className="mt-4 flex items-center justify-between gap-3 border border-black/15 px-4 py-3 cursor-pointer">
+            <span className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                checked={rushDelivery}
+                onChange={(e) => setRushDelivery(e.target.checked)}
+                className="w-4 h-4"
+              />
+              <span className="text-sm text-ink">משלוח מהיר (תוך שעתיים, בכפוף לזמינות)</span>
+            </span>
+            <span className="text-sm text-ink/50">+{RUSH_DELIVERY_COST} ₪</span>
+          </label>
         </section>
 
         <section>
@@ -116,7 +142,7 @@ export default function CheckoutPage() {
           type="submit"
           className="w-full bg-ink text-white py-4 text-lg hover:bg-ink/85 transition-colors"
         >
-          לתשלום · {subtotal} ₪
+          לתשלום · {total} ₪
         </button>
       </form>
 
@@ -141,9 +167,21 @@ export default function CheckoutPage() {
             );
           })}
         </ul>
-        <div className="border-t border-black/10 mt-5 pt-4 flex justify-between font-medium text-ink">
+        <div className="border-t border-black/10 mt-5 pt-4 space-y-2 text-sm text-ink/70">
+          <div className="flex justify-between">
+            <span>משלוח ({city})</span>
+            <span>{selectedZone.cost > 0 ? `${selectedZone.cost} ₪` : "חינם"}</span>
+          </div>
+          {rushDelivery && (
+            <div className="flex justify-between">
+              <span>משלוח מהיר</span>
+              <span>{RUSH_DELIVERY_COST} ₪</span>
+            </div>
+          )}
+        </div>
+        <div className="border-t border-black/10 mt-3 pt-4 flex justify-between font-medium text-ink">
           <span>סה&quot;כ לתשלום</span>
-          <span>{subtotal} ₪</span>
+          <span>{total} ₪</span>
         </div>
       </aside>
     </div>

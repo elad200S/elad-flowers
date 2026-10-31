@@ -26,6 +26,22 @@ export const services: Service[] = [
   { slug: "weekend", title: "פרחי שבוע", image: img("1523694576729-dc99e9c0f9b4") },
 ];
 
+export interface DeliveryZone {
+  city: string;
+  cost: number;
+  costLabel: string;
+  time: string;
+}
+
+export const deliveryZones: DeliveryZone[] = [
+  { city: "חולון", cost: 0, costLabel: "משלוח חינם", time: "באותו היום בהזמנה עד 14:00" },
+  { city: "בת ים", cost: 20, costLabel: "20 ₪", time: "באותו היום בהזמנה עד 14:00" },
+  { city: "ראשון לציון", cost: 25, costLabel: "25 ₪", time: "באותו היום בהזמנה עד 14:00" },
+  { city: "תל אביב", cost: 35, costLabel: "35 ₪", time: "עד יום עסקים אחד" },
+];
+
+export const RUSH_DELIVERY_COST = 30;
+
 export const addOns: AddOn[] = [
   { id: "card", label: "כרטיס ברכה", price: 15, hasTextArea: true },
   { id: "chocolate", label: "קופסת שוקולד", price: 35 },
