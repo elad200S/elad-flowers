@@ -10,23 +10,21 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 // Each position keeps its own subject and never swaps place with another
 // position — only the color/beat cycles, independently per position.
 const leftSequence = [
-  { src: "/hero/rotator/green-left.png", alt: "תקריב פרח ירוק" },
-  { src: "/hero/rotator/blue-left.png", alt: "תקריב פרח כחול" },
-  { src: "/hero/rotator/pink-left.jpg", alt: "תקריב פרח ורוד" },
+  { src: "/hero/rotator/left-green.png", alt: "תקריב פרח ירוק" },
+  { src: "/hero/rotator/left-blue.png", alt: "תקריב פרח כחול" },
+  { src: "/hero/rotator/left-pink.jpg", alt: "תקריב פרח ורוד" },
 ];
 
 const midSequence = [
-  { src: "/hero/rotator/blue-mid.png", alt: "דוגמנית בחליפה ורודה אוחזת תיק זרים" },
-  { src: "/hero/model-bag.png", alt: "דוגמנית בחליפה ירוקה אוחזת תיק זרים" },
-  { src: "/hero/rotator/pink-mid.jpg", alt: "דוגמנית בחליפה כחולה אוחזת תיק זרים" },
+  { src: "/hero/rotator/mid-pink.png", alt: "דוגמנית בחליפה ורודה אוחזת תיק זרים" },
+  { src: "/hero/rotator/mid-green.png", alt: "דוגמנית בחליפה ירוקה אוחזת תיק זרים" },
+  { src: "/hero/rotator/mid-blue.jpg", alt: "דוגמנית בחליפה כחולה אוחזת תיק זרים" },
 ];
 
-// No pink vase-arrangement shot exists among the uploaded references yet —
-// reusing one of the green ones as a placeholder until a real one is supplied.
 const rightSequence = [
-  { src: "/hero/rotator/green-right.png", alt: "זר כחול באגרטל" },
-  { src: "/hero/rotator/blue-right.png", alt: "זר ורוד באגרטל (placeholder)" },
-  { src: "/hero/rotator/pink-right.jpg", alt: "זר ירוק באגרטל" },
+  { src: "/hero/rotator/right-blue.png", alt: "זר כחול באגרטל" },
+  { src: "/hero/rotator/right-pink.png", alt: "זר ורוד באגרטל" },
+  { src: "/hero/rotator/right-green.jpg", alt: "זר ירוק באגרטל" },
 ];
 
 function Panel({ src, alt, from }: { src: string; alt: string; from: "top" | "bottom" }) {
