@@ -14,15 +14,67 @@ const paymentOptions = [
 ];
 
 export default function CheckoutPage() {
-  const { items, subtotal } = useCart();
+  const { items, subtotal, clearCart } = useCart();
   const [payment, setPayment] = useState("bit");
   const [city, setCity] = useState(deliveryZones[0].city);
   const [rushDelivery, setRushDelivery] = useState(false);
   const [placed, setPlaced] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const today = useMemo(() => new Date().toISOString().split("T")[0], []);
   const selectedZone = deliveryZones.find((z) => z.city === city) ?? deliveryZones[0];
   const total = subtotal + selectedZone.cost + (rushDelivery ? RUSH_DELIVERY_COST : 0);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    setSubmitting(true);
+
+    const form = new FormData(e.currentTarget);
+
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          senderName: form.get("senderName"),
+          senderPhone: form.get("senderPhone"),
+          recipientName: form.get("recipientName"),
+          recipientPhone: form.get("recipientPhone"),
+          city,
+          street: form.get("street"),
+          floor: form.get("floor"),
+          deliveryDate: form.get("deliveryDate"),
+          rushDelivery,
+          cardMessage: form.get("cardMessage"),
+          paymentMethod: paymentOptions.find((p) => p.id === payment)?.label ?? payment,
+          items: items.map((item) => ({
+            title: item.title,
+            sizeLabel: item.sizeLabel,
+            quantity: item.quantity,
+            basePrice: item.basePrice,
+            addOns: item.addOns.map((a) => ({ label: a.label, price: a.price })),
+          })),
+          deliveryCost: selectedZone.cost,
+          total,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error ?? "שגיאה בשליחת ההזמנה, נסו שוב.");
+        setSubmitting(false);
+        return;
+      }
+
+      clearCart();
+      setPlaced(true);
+    } catch {
+      setError("שגיאה בשליחת ההזמנה, נסו שוב.");
+      setSubmitting(false);
+    }
+  };
 
   if (placed) {
     return (
@@ -57,26 +109,20 @@ export default function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12 grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-10">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setPlaced(true);
-        }}
-        className="space-y-10"
-      >
+      <form onSubmit={handleSubmit} className="space-y-10">
         <section>
           <h2 className="font-serif text-xl text-ink mb-4">פרטי השולח/ת</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input required placeholder="שם מלא" className="input" />
-            <input required type="tel" placeholder="טלפון" className="input" dir="ltr" />
+            <input name="senderName" required placeholder="שם מלא" className="input" />
+            <input name="senderPhone" required type="tel" placeholder="טלפון" className="input" dir="ltr" />
           </div>
         </section>
 
         <section>
           <h2 className="font-serif text-xl text-ink mb-4">פרטי המקבל/ת</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input required placeholder="שם מלא" className="input" />
-            <input required type="tel" placeholder="טלפון" className="input" dir="ltr" />
+            <input name="recipientName" required placeholder="שם מלא" className="input" />
+            <input name="recipientPhone" required type="tel" placeholder="טלפון" className="input" dir="ltr" />
           </div>
         </section>
 
@@ -90,14 +136,14 @@ export default function CheckoutPage() {
                 </option>
               ))}
             </select>
-            <input required placeholder="רחוב ומספר בית" className="input sm:col-span-1" />
-            <input placeholder="קומה / דירה (לא חובה)" className="input sm:col-span-2" />
+            <input name="street" required placeholder="רחוב ומספר בית" className="input sm:col-span-1" />
+            <input name="floor" placeholder="קומה / דירה (לא חובה)" className="input sm:col-span-2" />
           </div>
         </section>
 
         <section>
           <h2 className="font-serif text-xl text-ink mb-4">תאריך משלוח</h2>
-          <input required type="date" min={today} className="input sm:w-1/2" />
+          <input name="deliveryDate" required type="date" min={today} className="input sm:w-1/2" />
 
           <label className="mt-4 flex items-center justify-between gap-3 border border-black/15 px-4 py-3 cursor-pointer">
             <span className="flex items-center gap-3">
@@ -115,7 +161,7 @@ export default function CheckoutPage() {
 
         <section>
           <h2 className="font-serif text-xl text-ink mb-4">ברכה לכרטיס</h2>
-          <textarea placeholder="כתבו כאן את הברכה..." rows={3} className="input" />
+          <textarea name="cardMessage" placeholder="כתבו כאן את הברכה..." rows={3} className="input" />
         </section>
 
         <section>
@@ -138,11 +184,14 @@ export default function CheckoutPage() {
           </div>
         </section>
 
+        {error && <p className="text-sm text-red-600">{error}</p>}
+
         <button
           type="submit"
-          className="w-full bg-ink text-white py-4 text-lg hover:bg-ink/85 transition-colors"
+          disabled={submitting}
+          className="w-full bg-ink text-white py-4 text-lg hover:bg-ink/85 transition-colors disabled:opacity-50"
         >
-          לתשלום · {total} ₪
+          {submitting ? "שולח הזמנה..." : `לתשלום · ${total} ₪`}
         </button>
       </form>
 
