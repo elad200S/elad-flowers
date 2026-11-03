@@ -13,10 +13,10 @@ export const productTypes: { slug: ProductType; title: string }[] = [
 ];
 
 export const categories: Category[] = [
-  { slug: "roses", title: "ורדים", image: img("1559779080-6970e0186790") },
+  { slug: "roses", title: "ורדים", image: "/products/red-roses-bouquet.jpeg" },
   { slug: "tulips", title: "צבעונים", image: img("1554494583-c4e1649bfe71") },
-  { slug: "sunflowers", title: "חמניות", image: img("1597848212624-a19eb35e2651") },
-  { slug: "peonies", title: "פיוניות", image: img("1582794543462-0d7922e50cf5") },
+  { slug: "sunflowers", title: "חמניות", image: "/products/sunflower-bouquet.jpeg" },
+  { slug: "peonies", title: "פיוניות", image: "/products/pink-lisianthus-bouquet.jpeg" },
   { slug: "orchids", title: "סחלבים", image: img("1610397648930-477b8c7f0943") },
 ];
 
@@ -58,7 +58,7 @@ export const products: Product[] = [
       "זר קלאסי ונצחי של ורדים אדומים טריים, נבחרים ביד ועטופים באריזת בוטיק איכותית. מתאים למתנה רומנטית, יום נישואין או כל אירוע שרוצים לומר בו \"אני אוהב אותך\".",
     category: "roses",
     productType: "bouquet",
-    images: [img("1559779080-6970e0186790"), img("1548094967-e25a127d1f6d"), img("1512056495345-913a0c261dc8")],
+    images: ["/products/red-roses-bouquet.jpeg", "/products/red-roses-bulk.jpeg", img("1512056495345-913a0c261dc8")],
     startingPrice: 189,
     sizes: [
       { size: "S", label: "קלאסי", price: 189 },
@@ -75,7 +75,7 @@ export const products: Product[] = [
       "זר אוורירי ורומנטי של פיוניות בגווני פסטל, משודך בירוקים טריים. זר מבוקש במיוחד לעונת האביב, מתנות יום האישה וימי נישואין.",
     category: "peonies",
     productType: "bouquet",
-    images: [img("1582794543462-0d7922e50cf5"), img("1575178094668-132dc931ad35"), img("1539622230226-3d4eb483b3f2")],
+    images: ["/products/pink-lisianthus-bouquet.jpeg", "/products/pink-protea-lily-bouquet.jpeg", img("1539622230226-3d4eb483b3f2")],
     startingPrice: 229,
     sizes: [
       { size: "S", label: "קלאסי", price: 229 },
@@ -92,7 +92,7 @@ export const products: Product[] = [
       "שילוב נקי ואלגנטי של פרחים לבנים וירק טרי. בחירה מושלמת לאירועים רשמיים, השקות עסקיות וברכות לבית חדש.",
     category: "orchids",
     productType: "bouquet",
-    images: [img("1523694576729-dc99e9c0f9b4"), img("1480511361210-b1b966c8d614"), img("1589244159943-460088ed5c92")],
+    images: ["/products/white-mixed-bouquet.jpeg", img("1480511361210-b1b966c8d614"), img("1589244159943-460088ed5c92")],
     startingPrice: 199,
     sizes: [
       { size: "S", label: "קלאסי", price: 199 },
@@ -124,7 +124,7 @@ export const products: Product[] = [
       "זר שמחה וצבע עם חמניות גדולות וטריות. מושלם למתנה שמחמיאה ומעלה חיוך, ומתאים במיוחד למתנות עידוד ולברכות יום הולדת.",
     category: "sunflowers",
     productType: "bouquet",
-    images: [img("1597848212624-a19eb35e2651"), img("1470509037663-253afd7f0f51"), img("1598920710727-e6c74781538c")],
+    images: ["/products/sunflower-bouquet.jpeg", img("1470509037663-253afd7f0f51"), img("1598920710727-e6c74781538c")],
     startingPrice: 169,
     sizes: [
       { size: "S", label: "קלאסי", price: 169 },
@@ -156,7 +156,7 @@ export const products: Product[] = [
       "ורד איכותי בודד, נבחר ביד ונארז בעדינות. אפשר להזמין כמחווה קטנה, כתוספת לזר אחר, או בכמות גדולה יותר לאירוע.",
     category: "roses",
     productType: "bouquet",
-    images: [img("1559779080-6970e0186790"), img("1548094967-e25a127d1f6d")],
+    images: ["/products/red-roses-bulk.jpeg", "/products/red-roses-bouquet.jpeg"],
     startingPrice: 7,
     sizes: [
       { size: "S", label: "ורד בודד", price: 7 },
@@ -172,7 +172,7 @@ export const products: Product[] = [
       "זר כלה מעוצב בקפידה בגווני לבן ופסטל, מותאם אישית לשמלה ולסגנון היום הגדול. כולל פגישת ייעוץ קצרה לבחירת הפרחים והעיצוב.",
     category: "orchids",
     productType: "bouquet",
-    images: [img("1523694576729-dc99e9c0f9b4"), img("1480511361210-b1b966c8d614")],
+    images: ["/products/white-mixed-bouquet.jpeg", "/products/pink-protea-lily-bouquet.jpeg"],
     startingPrice: 259,
     sizes: [
       { size: "S", label: "קלאסי", price: 259 },
@@ -204,7 +204,7 @@ export const products: Product[] = [
       "זר ייחודי המותאם להתקנה על רכב חתן וכלה, בעיצוב תואם לזר הכלה ולצבעי האירוע.",
     category: "peonies",
     productType: "bouquet",
-    images: [img("1582794543462-0d7922e50cf5"), img("1575178094668-132dc931ad35")],
+    images: ["/products/pink-protea-lily-bouquet.jpeg", "/products/pink-lisianthus-bouquet.jpeg"],
     startingPrice: 149,
     sizes: [
       { size: "S", label: "קלאסי", price: 149 },
