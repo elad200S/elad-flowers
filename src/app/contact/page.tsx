@@ -10,6 +10,15 @@ export default function ContactPage() {
         <li dir="ltr">{PHONE_DISPLAY}</li>
         <li>info@eladflowers.co.il</li>
       </ul>
+
+      <div className="mt-8">
+        <p className="text-[11px] tracking-wide uppercase text-ink/50 mb-3">שעות פעילות</p>
+        <ul className="space-y-1 text-ink/80 text-sm">
+          <li>א׳-ה׳: 09:00–20:00</li>
+          <li>ו׳: 09:00–14:00</li>
+          <li>שבת: סגור</li>
+        </ul>
+      </div>
       <a
         href={WHATSAPP_URL}
         target="_blank"

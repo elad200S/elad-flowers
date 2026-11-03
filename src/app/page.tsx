@@ -1,5 +1,6 @@
 import Hero from "@/components/home/Hero";
 import EditorialIntro from "@/components/home/EditorialIntro";
+import Advantages from "@/components/home/Advantages";
 import CategoryCircles from "@/components/home/CategoryCircles";
 import CategorySquares from "@/components/home/CategorySquares";
 import EventCollections from "@/components/home/EventCollections";
@@ -12,6 +13,7 @@ export default function Home() {
     <>
       <Hero />
       <EditorialIntro />
+      <Advantages />
       <CategoryCircles />
       <CategorySquares />
       <EventCollections />
