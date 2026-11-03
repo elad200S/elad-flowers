@@ -40,6 +40,7 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           senderName: form.get("senderName"),
           senderPhone: form.get("senderPhone"),
+          senderEmail: form.get("senderEmail"),
           recipientName: form.get("recipientName"),
           recipientPhone: form.get("recipientPhone"),
           city,
@@ -81,7 +82,7 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-xl px-6 py-24 text-center">
         <h1 className="font-serif text-3xl text-ink">ההזמנה התקבלה בהצלחה!</h1>
         <p className="text-ink/70 mt-4">
-          נשלח לכם אישור בוואטסאפ ותמונה של הזר לפני המשלוח.
+          שלחנו אישור למייל שלכם, ונשלח גם תמונה של הזר לפני המשלוח.
         </p>
         <Link
           href="/"
@@ -115,6 +116,14 @@ export default function CheckoutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input name="senderName" required placeholder="שם מלא" className="input" />
             <input name="senderPhone" required type="tel" placeholder="טלפון" className="input" dir="ltr" />
+            <input
+              name="senderEmail"
+              required
+              type="email"
+              placeholder="אימייל (לקבלת אישור הזמנה)"
+              className="input sm:col-span-2"
+              dir="ltr"
+            />
           </div>
         </section>
 

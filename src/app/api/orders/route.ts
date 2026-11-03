@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createOrder, type OrderItem } from "@/lib/db";
-import { sendOrderNotificationEmail } from "@/lib/email";
+import { sendCustomerConfirmationEmail, sendOrderNotificationEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -8,6 +8,7 @@ export async function POST(request: Request) {
   const {
     senderName,
     senderPhone,
+    senderEmail,
     recipientName,
     recipientPhone,
     city,
@@ -25,6 +26,7 @@ export async function POST(request: Request) {
   if (
     !senderName ||
     !senderPhone ||
+    !senderEmail ||
     !recipientName ||
     !recipientPhone ||
     !city ||
@@ -42,6 +44,7 @@ export async function POST(request: Request) {
     const order = await createOrder({
       senderName,
       senderPhone,
+      senderEmail,
       recipientName,
       recipientPhone,
       city,
@@ -60,6 +63,12 @@ export async function POST(request: Request) {
       await sendOrderNotificationEmail(order);
     } catch (emailError) {
       console.error("Failed to send order notification email", emailError);
+    }
+
+    try {
+      await sendCustomerConfirmationEmail(order);
+    } catch (emailError) {
+      console.error("Failed to send customer confirmation email", emailError);
     }
 
     return NextResponse.json({ id: order.id });

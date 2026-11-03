@@ -33,7 +33,7 @@ export default async function AdminOrderDetailPage({
       <div className="space-y-6 text-sm">
         <section>
           <p className="text-[11px] tracked-xs uppercase text-ink/50 mb-2">שולח/ת</p>
-          <p className="text-ink">{order.sender_name} · {order.sender_phone}</p>
+          <p className="text-ink">{order.sender_name} · {order.sender_phone} · {order.sender_email}</p>
         </section>
 
         <section>

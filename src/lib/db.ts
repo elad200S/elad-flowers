@@ -13,6 +13,7 @@ export interface Order {
   created_at: string;
   sender_name: string;
   sender_phone: string;
+  sender_email: string;
   recipient_name: string;
   recipient_phone: string;
   city: string;
@@ -45,6 +46,7 @@ async function ensureSchema() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
       sender_name TEXT NOT NULL,
       sender_phone TEXT NOT NULL,
+      sender_email TEXT NOT NULL DEFAULT '',
       recipient_name TEXT NOT NULL,
       recipient_phone TEXT NOT NULL,
       city TEXT NOT NULL,
@@ -60,6 +62,8 @@ async function ensureSchema() {
       fulfilled BOOLEAN NOT NULL DEFAULT false
     )
   `;
+  // Table may already exist from before this column was added.
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS sender_email TEXT NOT NULL DEFAULT ''`;
 }
 
 function withSchema<T>(fn: () => Promise<T>): Promise<T> {
@@ -70,6 +74,7 @@ function withSchema<T>(fn: () => Promise<T>): Promise<T> {
 export interface NewOrder {
   senderName: string;
   senderPhone: string;
+  senderEmail: string;
   recipientName: string;
   recipientPhone: string;
   city: string;
@@ -89,11 +94,11 @@ export async function createOrder(order: NewOrder): Promise<Order> {
     const sql = getSql();
     const rows = await sql`
       INSERT INTO orders (
-        sender_name, sender_phone, recipient_name, recipient_phone,
+        sender_name, sender_phone, sender_email, recipient_name, recipient_phone,
         city, street, floor, delivery_date, rush_delivery, card_message,
         payment_method, items, delivery_cost, total
       ) VALUES (
-        ${order.senderName}, ${order.senderPhone}, ${order.recipientName}, ${order.recipientPhone},
+        ${order.senderName}, ${order.senderPhone}, ${order.senderEmail}, ${order.recipientName}, ${order.recipientPhone},
         ${order.city}, ${order.street}, ${order.floor || null}, ${order.deliveryDate}, ${order.rushDelivery}, ${order.cardMessage || null},
         ${order.paymentMethod}, ${JSON.stringify(order.items)}, ${order.deliveryCost}, ${order.total}
       )
