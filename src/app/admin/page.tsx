@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { listOrders } from "@/lib/db";
+import { formatDate } from "@/lib/format";
 import LogoutButton from "./LogoutButton";
 
 export const dynamic = "force-dynamic";
@@ -51,12 +52,10 @@ export default async function AdminOrdersPage() {
                       {order.id}
                     </Link>
                   </td>
-                  <td className="py-2.5 px-3 text-ink/70">
-                    {new Date(order.created_at).toLocaleDateString("he-IL")}
-                  </td>
+                  <td className="py-2.5 px-3 text-ink/70">{formatDate(order.created_at)}</td>
                   <td className="py-2.5 px-3 text-ink">{order.sender_name}</td>
                   <td className="py-2.5 px-3 text-ink/70">{order.city}</td>
-                  <td className="py-2.5 px-3 text-ink/70">{order.delivery_date}</td>
+                  <td className="py-2.5 px-3 text-ink/70">{formatDate(order.delivery_date)}</td>
                   <td className="py-2.5 px-3 text-ink">{order.total} ₪</td>
                   <td className="py-2.5 px-3">
                     <span

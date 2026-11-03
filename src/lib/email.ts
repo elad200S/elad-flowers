@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import type { Order } from "./db";
+import { formatDate } from "./format";
 
 export async function sendOrderNotificationEmail(order: Order) {
   const apiKey = process.env.RESEND_API_KEY;
@@ -29,7 +30,7 @@ export async function sendOrderNotificationEmail(order: Order) {
         <p><strong>שולח/ת:</strong> ${order.sender_name} · ${order.sender_phone} · ${order.sender_email}</p>
         <p><strong>מקבל/ת:</strong> ${order.recipient_name} · ${order.recipient_phone}</p>
         <p><strong>כתובת:</strong> ${order.city}, ${order.street}${order.floor ? `, ${order.floor}` : ""}</p>
-        <p><strong>תאריך משלוח:</strong> ${order.delivery_date}${order.rush_delivery ? " (משלוח מהיר)" : ""}</p>
+        <p><strong>תאריך משלוח:</strong> ${formatDate(order.delivery_date)}${order.rush_delivery ? " (משלוח מהיר)" : ""}</p>
         ${order.card_message ? `<p><strong>ברכה:</strong> ${order.card_message}</p>` : ""}
         <p><strong>פריטים:</strong></p>
         <ul>${itemsHtml}</ul>
@@ -57,7 +58,7 @@ export async function sendCustomerConfirmationEmail(order: Order) {
       <div dir="rtl" style="font-family: sans-serif;">
         <h2>תודה, ${order.sender_name}!</h2>
         <p>ההזמנה שלך (#${order.id}) התקבלה בהצלחה ואנחנו כבר מתחילים לעבוד עליה.</p>
-        <p>משלוח ל${order.recipient_name} בתאריך ${order.delivery_date}, ${order.city}.</p>
+        <p>משלוח ל${order.recipient_name} בתאריך ${formatDate(order.delivery_date)}, ${order.city}.</p>
         <p>סה&quot;כ לתשלום: ${order.total} ₪</p>
         <p>נשלח לך עדכון נוסף עם תמונה של הזר לפני המשלוח.</p>
       </div>

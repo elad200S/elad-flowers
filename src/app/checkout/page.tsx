@@ -152,7 +152,15 @@ export default function CheckoutPage() {
 
         <section>
           <h2 className="font-serif text-xl text-ink mb-4">תאריך משלוח</h2>
-          <input name="deliveryDate" required type="date" min={today} className="input sm:w-1/2" />
+          <input
+            name="deliveryDate"
+            required
+            type="date"
+            min={today}
+            lang="he"
+            dir="rtl"
+            className="input sm:w-1/2"
+          />
 
           <label className="mt-4 flex items-center justify-between gap-3 border border-black/15 px-4 py-3 cursor-pointer">
             <span className="flex items-center gap-3">

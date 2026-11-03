@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getOrder } from "@/lib/db";
 import { toWhatsAppLink } from "@/lib/contact";
+import { formatDate } from "@/lib/format";
 import FulfilledToggle from "./FulfilledToggle";
 
 export const dynamic = "force-dynamic";
@@ -15,7 +16,7 @@ export default async function AdminOrderDetailPage({
   const order = await getOrder(Number(id));
   if (!order) notFound();
 
-  const confirmationMessage = `היי ${order.recipient_name}! זר/מתנה מ${order.sender_name} בדרך אליך ב-${order.delivery_date}. פרחי ד' יתברך 🌸`;
+  const confirmationMessage = `היי ${order.recipient_name}! זר/מתנה מ${order.sender_name} בדרך אליך ב-${formatDate(order.delivery_date)}. פרחי ד' יתברך 🌸`;
   const recipientWhatsApp = toWhatsAppLink(order.recipient_phone, confirmationMessage);
   const senderWhatsApp = toWhatsAppLink(order.sender_phone);
 
@@ -52,7 +53,7 @@ export default async function AdminOrderDetailPage({
         <section>
           <p className="text-[11px] tracked-xs uppercase text-ink/50 mb-2">תאריך משלוח</p>
           <p className="text-ink">
-            {order.delivery_date}
+            {formatDate(order.delivery_date)}
             {order.rush_delivery ? " · משלוח מהיר" : ""}
           </p>
         </section>
