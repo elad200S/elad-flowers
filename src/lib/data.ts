@@ -58,7 +58,7 @@ export const products: Product[] = [
       "זר קלאסי ונצחי של ורדים אדומים טריים, נבחרים ביד ועטופים באריזת בוטיק איכותית. מתאים למתנה רומנטית, יום נישואין או כל אירוע שרוצים לומר בו \"אני אוהב אותך\".",
     category: "roses",
     productType: "bouquet",
-    images: ["/products/red-roses-bouquet.jpeg", "/products/red-roses-bulk.jpeg", img("1512056495345-913a0c261dc8")],
+    images: ["/products/red-roses-bouquet.jpeg", "/products/red-roses-bulk.jpeg", "/products/red-pink-roses-mix.jpeg"],
     startingPrice: 189,
     sizes: [
       { size: "S", label: "קלאסי", price: 189 },
@@ -92,7 +92,7 @@ export const products: Product[] = [
       "שילוב נקי ואלגנטי של פרחים לבנים וירק טרי. בחירה מושלמת לאירועים רשמיים, השקות עסקיות וברכות לבית חדש.",
     category: "orchids",
     productType: "bouquet",
-    images: ["/products/white-mixed-bouquet.jpeg", img("1480511361210-b1b966c8d614"), img("1589244159943-460088ed5c92")],
+    images: ["/products/white-mixed-bouquet.jpeg", "/products/white-lisianthus-bouquet.jpeg", img("1589244159943-460088ed5c92")],
     startingPrice: 199,
     sizes: [
       { size: "S", label: "קלאסי", price: 199 },
@@ -124,7 +124,7 @@ export const products: Product[] = [
       "זר שמחה וצבע עם חמניות גדולות וטריות. מושלם למתנה שמחמיאה ומעלה חיוך, ומתאים במיוחד למתנות עידוד ולברכות יום הולדת.",
     category: "sunflowers",
     productType: "bouquet",
-    images: ["/products/sunflower-bouquet.jpeg", img("1470509037663-253afd7f0f51"), img("1598920710727-e6c74781538c")],
+    images: ["/products/sunflower-bouquet.jpeg", "/products/sunflower-bouquet-2.jpeg", img("1598920710727-e6c74781538c")],
     startingPrice: 169,
     sizes: [
       { size: "S", label: "קלאסי", price: 169 },
@@ -220,7 +220,7 @@ export const products: Product[] = [
       "מארז מתנה הכולל זר פרחים נבחר יחד עם תוספות לבחירה (שוקולד, יין או בלון), ארוז בעיצוב בוטיק מהודר. מתאים למתנות עסקיות, תודה או ברכה מיוחדת.",
     category: "roses",
     productType: "giftset",
-    images: [img("1561181274-ac181107c1ff"), img("1559779080-6970e0186790")],
+    images: ["/products/gift-set-plant-wine-chocolate.jpeg", "/products/chocolate-gift-boxes-shelf.jpeg"],
     startingPrice: 219,
     sizes: [
       { size: "S", label: "קלאסי", price: 219 },
@@ -236,7 +236,7 @@ export const products: Product[] = [
       "צמח בית קל לתחזוקה בעציץ קרמיקה מעוצב, מתנה שנשארת ומזכירה את האירוע הרבה אחרי שהפרחים קמלים. מתאים לבית חדש, ברכת החלמה או מתנה למשרד.",
     category: "orchids",
     productType: "plant",
-    images: [img("1592150621744-aca64f48394a")],
+    images: ["/products/potted-snake-plants.jpeg", "/products/potted-plants-shelf.jpeg"],
     startingPrice: 129,
     sizes: [
       { size: "S", label: "קטן", price: 129 },
@@ -252,7 +252,7 @@ export const products: Product[] = [
       "צרור בלוני הליום בגווני פסטל עדינים, מתנפח במקום ומגיע מעוטר בסרטים. הבלונים מחזיקים עד כ-3 שעות מרגע הניפוח, לכן מומלץ להזמין סמוך למועד האירוע.",
     category: "tulips",
     productType: "balloon",
-    images: [img("1787319313547-9e5efaaa11ef")],
+    images: ["/products/balloon-heart-blue.jpeg"],
     startingPrice: 59,
     sizes: [
       { size: "S", label: "3 בלונים", price: 59 },
@@ -268,7 +268,7 @@ export const products: Product[] = [
       "קופסת שוקולדים בלגיים נבחרים בעיצוב מהודר, מתנה מושלמת כשלעצמה או כתוספת לזר. ניתן לשלב עם בקבוק יין לבחירה בתיאום מראש דרך וואטסאפ.",
     category: "roses",
     productType: "chocolate-wine",
-    images: [img("1769775264026-fbc4e974dea8")],
+    images: ["/products/chocolate-gift-boxes-shelf.jpeg", "/products/wine-bottles-shelf.jpeg"],
     startingPrice: 89,
     sizes: [
       { size: "S", label: "קופסה קטנה", price: 89 },
