@@ -1,4 +1,4 @@
-import { PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
+import { CONTACT_EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 
 export default function ContactPage() {
   return (
@@ -8,7 +8,7 @@ export default function ContactPage() {
       <ul className="space-y-3 text-ink/80">
         <li>רחוב סוקולוב 20, חולון</li>
         <li dir="ltr">{PHONE_DISPLAY}</li>
-        <li>info@eladflowers.co.il</li>
+        <li dir="ltr">{CONTACT_EMAIL}</li>
       </ul>
 
       <div className="mt-8">

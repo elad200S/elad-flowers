@@ -10,7 +10,7 @@ interface WishlistContextValue {
 }
 
 const WishlistContext = createContext<WishlistContextValue | null>(null);
-const STORAGE_KEY = "elad-flowers-wishlist";
+const STORAGE_KEY = "prachei-dyitbarach-wishlist";
 
 export function WishlistProvider({ children }: { children: ReactNode }) {
   const [slugs, setSlugs] = useState<string[]>([]);

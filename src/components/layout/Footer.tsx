@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
-import { PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
+import { CONTACT_EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
 
 function InstagramIcon() {
   return (
@@ -58,7 +58,7 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-ink/70">
             <li>רחוב סוקולוב 20, חולון</li>
             <li dir="ltr" className="text-right">{PHONE_DISPLAY}</li>
-            <li>info@eladflowers.co.il</li>
+            <li dir="ltr">{CONTACT_EMAIL}</li>
           </ul>
           <p className="text-[11px] tracked-xs uppercase text-ink/50 mt-6 mb-2">אמצעי תשלום</p>
           <p className="text-sm text-ink/70">ביט · אשראי · Apple Pay · Google Pay</p>
