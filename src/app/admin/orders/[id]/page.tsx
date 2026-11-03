@@ -15,7 +15,7 @@ export default async function AdminOrderDetailPage({
   const order = await getOrder(Number(id));
   if (!order) notFound();
 
-  const confirmationMessage = `היי ${order.recipient_name}! זר/מתנה מ${order.sender_name} בדרך אליך ב-${order.delivery_date}. אלעד פרחים 🌸`;
+  const confirmationMessage = `היי ${order.recipient_name}! זר/מתנה מ${order.sender_name} בדרך אליך ב-${order.delivery_date}. פרחי ד' יתברך 🌸`;
   const recipientWhatsApp = toWhatsAppLink(order.recipient_phone, confirmationMessage);
   const senderWhatsApp = toWhatsAppLink(order.sender_phone);
 

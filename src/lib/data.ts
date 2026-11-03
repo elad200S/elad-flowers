@@ -5,11 +5,11 @@ const img = (id: string) =>
 
 export const productTypes: { slug: ProductType; title: string }[] = [
   { slug: "bouquet", title: "זרי פרחים" },
-  { slug: "arrangement", title: "סידורים וקופסאות פרחים" },
+  { slug: "arrangement", title: "סידורי פרחים וקופסאות פרחים" },
   { slug: "plant", title: "עציצים וצמחים" },
   { slug: "giftset", title: "מארזי מתנה" },
-  { slug: "balloon", title: "בלונים" },
-  { slug: "chocolate-wine", title: "שוקולדים ויין" },
+  { slug: "balloon", title: "בלונים ועיצובי בלונים" },
+  { slug: "chocolate-wine", title: "שוקולדים, יין ותוספות למתנה" },
 ];
 
 export const categories: Category[] = [

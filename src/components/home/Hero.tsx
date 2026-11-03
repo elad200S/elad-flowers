@@ -74,7 +74,7 @@ export default function Hero() {
           text-[13vw] md:text-[7.5vw]"
         style={{ textShadow: "0 2px 30px rgba(0,0,0,0.45), 0 2px 70px rgba(0,0,0,0.3)" }}
       >
-        אלעד פרחים
+        פרחי ד&apos; יתברך
       </h1>
 
       <motion.div

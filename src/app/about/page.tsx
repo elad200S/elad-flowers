@@ -1,7 +1,7 @@
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-20 text-center">
-      <h1 className="font-serif text-3xl sm:text-4xl text-ink mb-6">אודות אלעד פרחים</h1>
+      <h1 className="font-serif text-3xl sm:text-4xl text-ink mb-6">אודות פרחי ד&apos; יתברך</h1>
       <div className="hidden w-16 mx-auto mb-8" />
       <p className="text-ink/75 leading-8">
         אנחנו חנות פרחים בוטיק מחולון, מאמינים שזר פרחים הוא הרבה יותר ממתנה -

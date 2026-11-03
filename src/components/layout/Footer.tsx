@@ -17,7 +17,7 @@ export default function Footer() {
     <footer className="bg-paper text-ink border-t border-black/10">
       <div className="mx-auto max-w-7xl px-6 py-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
         <div>
-          <p className="font-serif text-2xl mb-4">אלעד פרחים</p>
+          <p className="font-serif text-2xl mb-4">פרחי ד&apos; יתברך</p>
           <p className="text-sm leading-6 text-ink/60">
             זרים בעיצוב אישי עם משלוח עד הבית בחולון והסביבה.
           </p>
@@ -67,7 +67,7 @@ export default function Footer() {
 
       <div className="border-t border-black/10">
         <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink/40">
-          <p>© 2026 אלעד פרחים. כל הזכויות שמורות.</p>
+          <p>© 2026 פרחי ד&apos; יתברך. כל הזכויות שמורות.</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/terms" className="hover:text-ink transition-colors">תקנון</Link>
             <Link href="/privacy" className="hover:text-ink transition-colors">פרטיות</Link>

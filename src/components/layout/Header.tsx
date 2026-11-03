@@ -36,7 +36,7 @@ export default function Header() {
             {menuOpen ? <X size={20} strokeWidth={1.25} /> : <Menu size={20} strokeWidth={1.25} />}
           </button>
           <Link href="/" className="font-serif text-lg sm:text-xl tracking-wide text-ink">
-            אלעד פרחים
+            פרחי ד' יתברך
           </Link>
         </div>
 
