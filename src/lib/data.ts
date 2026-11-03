@@ -75,7 +75,7 @@ export const products: Product[] = [
       "זר אוורירי ורומנטי של פיוניות בגווני פסטל, משודך בירוקים טריים. זר מבוקש במיוחד לעונת האביב, מתנות יום האישה וימי נישואין.",
     category: "peonies",
     productType: "bouquet",
-    images: ["/products/pink-lisianthus-bouquet.jpeg", "/products/pink-protea-lily-bouquet.jpeg", img("1539622230226-3d4eb483b3f2")],
+    images: ["/products/pink-lisianthus-bouquet.jpeg", "/products/pink-protea-lily-bouquet.jpeg", "/products/mixed-roses-pastel.jpeg"],
     startingPrice: 229,
     sizes: [
       { size: "S", label: "קלאסי", price: 229 },
