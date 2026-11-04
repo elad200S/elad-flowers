@@ -8,6 +8,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import CartDrawer from "@/components/cart/CartDrawer";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 import { SITE_URL } from "@/lib/contact";
 
 const heading = Frank_Ruhl_Libre({
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
+        <SmoothScroll />
         <CartProvider>
           <WishlistProvider>
             <AnnouncementBar />
