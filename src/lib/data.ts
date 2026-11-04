@@ -981,37 +981,37 @@ export const events: EventCollection[] = [
   {
     slug: "birthday",
     title: "יום הולדת",
-    image: img("1597848212624-a19eb35e2651"),
+    image: "/products/bicolor-pink-white-gerbera.jpeg",
     productSlugs: [],
   },
   {
     slug: "anniversary",
     title: "יום נישואין",
-    image: img("1582794543462-0d7922e50cf5"),
+    image: "/products/white-red-pink-luxury-mix.jpeg",
     productSlugs: [],
   },
   {
     slug: "love",
     title: "אהבה ורומנטיקה",
-    image: img("1559779080-6970e0186790"),
+    image: "/products/classic-red-roses-card.jpeg",
     productSlugs: [],
   },
   {
     slug: "birth",
     title: "לידה",
-    image: img("1523694576729-dc99e9c0f9b4"),
+    image: "/products/pure-white-lisianthus.jpeg",
     productSlugs: [],
   },
   {
     slug: "thanks",
     title: "תודה",
-    image: img("1523694576729-dc99e9c0f9b4"),
+    image: "/products/pink-daisy-white-lily-arranged.jpeg",
     productSlugs: [],
   },
   {
     slug: "holidays",
     title: "חגים",
-    image: img("1561181274-ac181107c1ff"),
+    image: "/products/gift-set-plant-wine-chocolate.jpeg",
     productSlugs: [],
   },
 ];
