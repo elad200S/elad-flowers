@@ -3,11 +3,15 @@
 :root {
   --color-ink: #121212;
   --color-paper: #ffffff;
+  --color-accent: #2f6b45;
+  --color-accent-soft: #eaf2ec;
 }
 
 @theme inline {
   --color-ink: var(--color-ink);
   --color-paper: var(--color-paper);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
   --font-serif: var(--font-heading);
   --font-sans: var(--font-body);
 }
@@ -30,15 +34,15 @@ body {
 
 .input {
   width: 100%;
-  border: 1px solid #d4d4d4;
-  border-radius: 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.6rem;
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
   background: white;
 }
 .input:focus {
   outline: none;
-  border-color: var(--color-ink);
+  border-color: var(--color-accent);
 }
 
 .tracked-xs {

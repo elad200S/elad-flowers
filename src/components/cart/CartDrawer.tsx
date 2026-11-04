@@ -99,7 +99,7 @@ export default function CartDrawer() {
                 <Link
                   href="/checkout"
                   onClick={closeCart}
-                  className="block w-full text-center bg-ink text-white py-3.5 hover:bg-ink/85 transition-colors"
+                  className="block w-full text-center rounded-lg bg-accent text-white py-3.5 font-medium hover:brightness-110 transition-all"
                 >
                   לתשלום
                 </Link>

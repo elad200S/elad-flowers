@@ -2,19 +2,17 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
-import { useHeroTheme } from "@/context/HeroThemeContext";
+import { productTypes } from "@/lib/data";
 import SearchOverlay from "./SearchOverlay";
 
 const navLinks = [
-  { href: "/shop", label: "קטלוג" },
-  { href: "/category/new", label: "חדשים" },
-  { href: "/category/accessories", label: "אקססוריז" },
+  { href: "/shop", label: "כל המוצרים" },
+  ...productTypes.map((t) => ({ href: `/shop?type=${t.slug}`, label: t.title })),
   { href: "/about", label: "אודות" },
-  { href: "/contact", label: "קשר" },
+  { href: "/contact", label: "צור קשר" },
 ];
 
 export default function Header() {
@@ -22,10 +20,9 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount, openCart } = useCart();
   const { count: wishlistCount } = useWishlist();
-  const { accent } = useHeroTheme();
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-paper border-b border-black/5 relative">
+    <header className="sticky top-0 z-40 w-full bg-paper border-b-2 border-accent">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button
@@ -36,16 +33,16 @@ export default function Header() {
             {menuOpen ? <X size={20} strokeWidth={1.25} /> : <Menu size={20} strokeWidth={1.25} />}
           </button>
           <Link href="/" className="font-serif text-lg sm:text-xl tracking-wide text-ink">
-            פרחי ד' יתברך
+            פרחי ד&apos; יתברך
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 overflow-x-auto no-scrollbar">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-[11px] tracked-xs uppercase text-ink/70 hover:text-ink transition-colors"
+              className="shrink-0 text-[13px] text-ink/75 hover:text-accent transition-colors"
             >
               {link.label}
             </Link>
@@ -56,18 +53,18 @@ export default function Header() {
           <button
             aria-label="חיפוש"
             onClick={() => setSearchOpen(true)}
-            className="text-ink/70 hover:text-ink transition-colors"
+            className="text-ink/70 hover:text-accent transition-colors"
           >
-            <Search size={17} strokeWidth={1.25} />
+            <Search size={18} strokeWidth={1.5} />
           </button>
           <Link
             href="/wishlist"
             aria-label="רשימת משאלות"
-            className="relative text-ink/70 hover:text-ink transition-colors"
+            className="relative text-ink/70 hover:text-accent transition-colors"
           >
-            <Heart size={17} strokeWidth={1.25} />
+            <Heart size={18} strokeWidth={1.5} />
             {wishlistCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 bg-ink text-paper text-[9px] rounded-full w-3.5 h-3.5 flex items-center justify-center">
+              <span className="absolute -top-1.5 -right-1.5 bg-accent text-white text-[9px] rounded-full w-4 h-4 flex items-center justify-center">
                 {wishlistCount}
               </span>
             )}
@@ -75,11 +72,11 @@ export default function Header() {
           <button
             aria-label="סל קניות"
             onClick={openCart}
-            className="relative text-ink/70 hover:text-ink transition-colors"
+            className="relative text-ink/70 hover:text-accent transition-colors"
           >
-            <ShoppingBag size={17} strokeWidth={1.25} />
+            <ShoppingBag size={18} strokeWidth={1.5} />
             {itemCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 bg-ink text-paper text-[9px] rounded-full w-3.5 h-3.5 flex items-center justify-center">
+              <span className="absolute -top-1.5 -right-1.5 bg-accent text-white text-[9px] rounded-full w-4 h-4 flex items-center justify-center">
                 {itemCount}
               </span>
             )}
@@ -94,19 +91,13 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="py-2.5 text-ink/80 hover:text-ink transition-colors border-b border-black/5 text-xs tracked-xs uppercase"
+              className="py-2.5 text-ink/80 hover:text-accent transition-colors border-b border-black/5 text-sm"
             >
               {link.label}
             </Link>
           ))}
         </nav>
       )}
-
-      <motion.div
-        animate={{ backgroundColor: accent }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-[-1px] inset-x-0 h-[2px]"
-      />
 
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>

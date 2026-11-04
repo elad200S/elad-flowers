@@ -87,7 +87,7 @@ export default function CheckoutPage() {
         </p>
         <Link
           href="/"
-          className="inline-block mt-8 bg-ink text-white px-8 py-3 hover:bg-ink/85 transition-colors"
+          className="inline-block mt-8 rounded-lg bg-accent text-white px-8 py-3 hover:brightness-110 transition-all"
         >
           חזרה לדף הבית
         </Link>
@@ -101,7 +101,7 @@ export default function CheckoutPage() {
         <h1 className="font-serif text-2xl text-ink">הסל שלך ריק</h1>
         <Link
           href="/"
-          className="inline-block mt-6 bg-ink text-white px-8 py-3 hover:bg-ink/85 transition-colors"
+          className="inline-block mt-6 rounded-lg bg-accent text-white px-8 py-3 hover:brightness-110 transition-all"
         >
           לבחירת זר
         </Link>
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
             className="input sm:w-1/2"
           />
 
-          <label className="mt-4 flex items-center justify-between gap-3 border border-black/15 px-4 py-3 cursor-pointer">
+          <label className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-black/15 px-4 py-3 cursor-pointer">
             <span className="flex items-center gap-3">
               <input
                 type="checkbox"
@@ -192,7 +192,7 @@ export default function CheckoutPage() {
                 onClick={() => setPayment(opt.id)}
                 className={`rounded-lg border px-3 py-3 text-sm transition-colors ${
                   payment === opt.id
-                    ? "border-ink bg-ink/5 text-ink"
+                    ? "border-accent bg-accent-soft text-ink"
                     : "border-black/10 text-ink"
                 }`}
               >
@@ -207,7 +207,7 @@ export default function CheckoutPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-ink text-white py-4 text-lg hover:bg-ink/85 transition-colors disabled:opacity-50"
+          className="w-full rounded-lg bg-accent text-white py-4 text-lg font-medium hover:brightness-110 transition-all disabled:opacity-50"
         >
           {submitting ? "שולח הזמנה..." : `לתשלום · ${total} ₪`}
         </button>

@@ -3,7 +3,6 @@ import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
-import { HeroThemeProvider } from "@/context/HeroThemeContext";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -72,14 +71,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
         <CartProvider>
           <WishlistProvider>
-            <HeroThemeProvider>
-              <AnnouncementBar />
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <WhatsAppButton />
-              <CartDrawer />
-            </HeroThemeProvider>
+            <AnnouncementBar />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <WhatsAppButton />
+            <CartDrawer />
           </WishlistProvider>
         </CartProvider>
       </body>

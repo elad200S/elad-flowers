@@ -68,14 +68,14 @@ export default function ProductClient({ product }: { product: Product }) {
                   <button
                     key={s.size}
                     onClick={() => setSelectedSize(s.size)}
-                    className={`relative border px-3 py-3 text-center transition-colors ${
+                    className={`relative rounded-lg border px-3 py-3 text-center transition-colors ${
                       selectedSize === s.size
-                        ? "border-ink bg-ink text-paper"
-                        : "border-black/15 text-ink hover:border-ink/50"
+                        ? "border-accent bg-accent text-white"
+                        : "border-black/15 text-ink hover:border-accent"
                     }`}
                   >
                     {s.isDefault && (
-                      <span className="absolute -top-2 right-1/2 translate-x-1/2 bg-paper border border-black/15 text-ink text-[9px] tracked-xs uppercase px-2 py-0.5 whitespace-nowrap">
+                      <span className="absolute -top-2 right-1/2 translate-x-1/2 bg-paper border border-black/15 text-ink text-[9px] tracked-xs uppercase px-2 py-0.5 rounded-full whitespace-nowrap">
                         פופולרי
                       </span>
                     )}
@@ -96,17 +96,17 @@ export default function ProductClient({ product }: { product: Product }) {
                     <div key={addOn.id}>
                       <button
                         onClick={() => toggleAddOn(addOn.id)}
-                        className={`w-full flex items-center justify-between border px-4 py-3 transition-colors ${
-                          isChecked ? "border-ink" : "border-black/15"
+                        className={`w-full flex items-center justify-between rounded-lg border px-4 py-3 transition-colors ${
+                          isChecked ? "border-accent" : "border-black/15"
                         }`}
                       >
                         <span className="flex items-center gap-3">
                           <span
-                            className={`w-4 h-4 border flex items-center justify-center ${
-                              isChecked ? "bg-ink border-ink" : "border-ink/30"
+                            className={`w-4 h-4 rounded border flex items-center justify-center ${
+                              isChecked ? "bg-accent border-accent" : "border-ink/30"
                             }`}
                           >
-                            {isChecked && <Check size={10} className="text-paper" />}
+                            {isChecked && <Check size={10} className="text-white" />}
                           </span>
                           <span className="text-sm text-ink">{addOn.label}</span>
                         </span>
@@ -157,7 +157,7 @@ export default function ProductClient({ product }: { product: Product }) {
             <div className="hidden md:flex flex-col gap-2 mt-10">
               <button
                 onClick={handleAddToCart}
-                className="w-full bg-ink text-paper py-4 text-sm tracked-xs uppercase hover:bg-ink/85 transition-colors"
+                className="w-full rounded-lg bg-accent text-white py-4 text-sm font-medium hover:brightness-110 transition-all"
               >
                 {added ? "נוסף לסל ✓" : `הוסיפו לסל · ${total} ₪`}
               </button>
@@ -165,7 +165,7 @@ export default function ProductClient({ product }: { product: Product }) {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full text-center border border-ink text-ink py-3.5 text-sm tracked-xs uppercase hover:bg-ink hover:text-paper transition-colors"
+                className="w-full text-center rounded-lg border border-accent text-accent py-3.5 text-sm font-medium hover:bg-accent hover:text-white transition-colors"
               >
                 הזמנה בוואטסאפ
               </a>
@@ -194,7 +194,7 @@ export default function ProductClient({ product }: { product: Product }) {
       <div className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-paper border-t border-black/10 p-3">
         <button
           onClick={handleAddToCart}
-          className="w-full bg-ink text-paper py-3.5 text-sm tracked-xs uppercase hover:bg-ink/85 transition-colors"
+          className="w-full rounded-lg bg-accent text-white py-3.5 text-sm font-medium hover:brightness-110 transition-all"
         >
           {added ? "נוסף לסל ✓" : `הוסיפו לסל · ${total} ₪`}
         </button>
