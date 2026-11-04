@@ -50,7 +50,7 @@ export default function RecommendedTabs() {
 
         <div className="text-center mt-10">
           <Link
-            href={active === ALL ? "/shop" : `/shop?type=${active}`}
+            href={active === ALL ? "/shop" : `/shop/${active}`}
             className="inline-block border border-accent text-accent text-sm px-7 py-3 rounded-lg hover:bg-accent hover:text-white transition-colors"
           >
             לכל המוצרים

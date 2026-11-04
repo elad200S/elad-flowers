@@ -11,7 +11,7 @@ import Logo from "./Logo";
 
 const navLinks = [
   { href: "/shop", label: "כל המוצרים" },
-  ...productTypes.map((t) => ({ href: `/shop?type=${t.slug}`, label: t.title })),
+  ...productTypes.map((t) => ({ href: `/shop/${t.slug}`, label: t.title })),
   { href: "/about", label: "אודות" },
   { href: "/contact", label: "צור קשר" },
 ];
