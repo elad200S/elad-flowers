@@ -66,6 +66,38 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-black/10">
+        <div className="mx-auto max-w-7xl px-6 py-10">
+          <p className="text-[11px] tracked-xs uppercase text-ink/50 mb-4">חיפושים פופולריים</p>
+          <div className="flex flex-wrap gap-x-3 gap-y-2 text-xs text-ink/50">
+            <Link href="/shop?type=bouquet" className="hover:text-ink transition-colors">זר לכלה בחולון</Link>
+            <Link href="/shop?type=bouquet" className="hover:text-ink transition-colors">זר פרחים לשישי בחולון</Link>
+            <Link href="/delivery" className="hover:text-ink transition-colors">משלוח פרחים לבת ים</Link>
+            <Link href="/category/roses" className="hover:text-ink transition-colors">זר ורדים בראשון לציון</Link>
+            <Link href="/shop?type=bouquet" className="hover:text-ink transition-colors">זר פרחים לתל אביב</Link>
+            <Link href="/shop?type=arrangement" className="hover:text-ink transition-colors">סידור פרחים לבת ים</Link>
+            <Link href="/shop?type=balloon" className="hover:text-ink transition-colors">בלונים ליום הולדת בחולון</Link>
+            <Link href="/shop?type=chocolate-wine" className="hover:text-ink transition-colors">מארז פרחים ושוקולד בחולון</Link>
+            <Link href="/shop?type=plant" className="hover:text-ink transition-colors">עציצים ליום הולדת בראשון לציון</Link>
+            <Link href="/shop?type=bouquet" className="hover:text-ink transition-colors">זר לרכב חתן וכלה בחולון</Link>
+            <Link href="/event/birthday" className="hover:text-ink transition-colors">זר ליום הולדת בחולון</Link>
+            <Link href="/event/anniversary" className="hover:text-ink transition-colors">זר ליום נישואין בבת ים</Link>
+            <Link href="/event/love" className="hover:text-ink transition-colors">זר אהבה ורומנטיקה בחולון</Link>
+            <Link href="/event/birth" className="hover:text-ink transition-colors">זר לברית ולידה בראשון לציון</Link>
+            <Link href="/event/thanks" className="hover:text-ink transition-colors">זר תודה לקולגה בתל אביב</Link>
+            <Link href="/event/holidays" className="hover:text-ink transition-colors">זר לחג בחולון</Link>
+            <Link href="/delivery" className="hover:text-ink transition-colors">משלוח פרחים מהיר בחולון</Link>
+            <Link href="/delivery" className="hover:text-ink transition-colors">משלוח פרחים באותו היום בחולון</Link>
+            <Link href="/shop" className="hover:text-ink transition-colors">חנות פרחים בחולון</Link>
+            <Link href="/shop?price=under-100" className="hover:text-ink transition-colors">זר פרחים זול בחולון</Link>
+            <Link href="/category/roses" className="hover:text-ink transition-colors">ורדים במחיר משתלם בחולון</Link>
+            <Link href="/shop?type=giftset" className="hover:text-ink transition-colors">מארז מתנה לעובדים בתל אביב</Link>
+            <Link href="/shop?type=bouquet" className="hover:text-ink transition-colors">זר פרחים למשרד בראשון לציון</Link>
+            <Link href="/shop" className="hover:text-ink transition-colors">פרחים לבת מצווה בחולון</Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-black/10">
         <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink/40">
           <p>© 2026 פרחי ד&apos; יתברך. כל הזכויות שמורות.</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
