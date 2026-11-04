@@ -52,6 +52,7 @@ export default function CheckoutPage() {
           paymentMethod: paymentOptions.find((p) => p.id === payment)?.label ?? payment,
           items: items.map((item) => ({
             title: item.title,
+            image: item.image,
             sizeLabel: item.sizeLabel,
             quantity: item.quantity,
             basePrice: item.basePrice,

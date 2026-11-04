@@ -2,6 +2,7 @@ import { neon } from "@neondatabase/serverless";
 
 export interface OrderItem {
   title: string;
+  image: string;
   sizeLabel: string;
   quantity: number;
   basePrice: number;
