@@ -7,6 +7,7 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { productTypes } from "@/lib/data";
 import SearchOverlay from "./SearchOverlay";
+import Logo from "./Logo";
 
 const navLinks = [
   { href: "/shop", label: "כל המוצרים" },
@@ -24,7 +25,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full bg-paper border-b-2 border-accent">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <button
             className="md:hidden p-1 text-ink"
             aria-label="תפריט"
@@ -32,12 +33,12 @@ export default function Header() {
           >
             {menuOpen ? <X size={20} strokeWidth={1.25} /> : <Menu size={20} strokeWidth={1.25} />}
           </button>
-          <Link href="/" className="font-serif text-lg sm:text-xl tracking-wide text-ink">
-            פרחי ד&apos; יתברך
+          <Link href="/">
+            <Logo />
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8 overflow-x-auto no-scrollbar">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7 overflow-x-auto no-scrollbar mx-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}

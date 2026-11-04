@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { CONTACT_EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/contact";
+import Logo from "./Logo";
 
 function InstagramIcon() {
   return (
@@ -17,7 +18,9 @@ export default function Footer() {
     <footer className="bg-paper text-ink border-t border-black/10">
       <div className="mx-auto max-w-7xl px-6 py-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
         <div>
-          <p className="font-serif text-2xl mb-4">פרחי ד&apos; יתברך</p>
+          <div className="mb-4">
+            <Logo iconSize={44} textClassName="font-serif text-xl text-accent whitespace-nowrap" />
+          </div>
           <p className="text-sm leading-6 text-ink/60">
             זרים בעיצוב אישי עם משלוח עד הבית בחולון והסביבה.
           </p>

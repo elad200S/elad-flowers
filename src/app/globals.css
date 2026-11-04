@@ -3,8 +3,8 @@
 :root {
   --color-ink: #121212;
   --color-paper: #ffffff;
-  --color-accent: #2f6b45;
-  --color-accent-soft: #eaf2ec;
+  --color-accent: #7e1c2e;
+  --color-accent-soft: #fadad1;
 }
 
 @theme inline {
