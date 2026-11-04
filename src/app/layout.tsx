@@ -7,6 +7,7 @@ import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import AccessibilityWidget from "@/components/layout/AccessibilityWidget";
 import CartDrawer from "@/components/cart/CartDrawer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import { SITE_URL } from "@/lib/contact";
@@ -91,6 +92,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <main className="flex-1">{children}</main>
             <Footer />
             <WhatsAppButton />
+            <AccessibilityWidget />
             <CartDrawer />
           </WishlistProvider>
         </CartProvider>
