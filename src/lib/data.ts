@@ -13,9 +13,9 @@ export const productTypes: { slug: ProductType; title: string }[] = [
 ];
 
 export const categories: Category[] = [
-  { slug: "roses", title: "ורדים", image: "/products/red-roses-bouquet.jpeg" },
+  { slug: "roses", title: "ורדים", image: "/products/luxury-red-pink-roses.jpeg" },
   { slug: "tulips", title: "צבעונים", image: img("1554494583-c4e1649bfe71") },
-  { slug: "sunflowers", title: "חמניות", image: "/products/sunflower-bouquet.jpeg" },
+  { slug: "sunflowers", title: "חמניות", image: "/products/sunflowers-wholesale-bulk.jpeg" },
   { slug: "peonies", title: "פיוניות", image: "/products/pink-lisianthus-bouquet.jpeg" },
   { slug: "orchids", title: "סחלבים", image: img("1610397648930-477b8c7f0943") },
 ];
