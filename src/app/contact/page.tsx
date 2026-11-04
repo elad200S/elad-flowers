@@ -27,6 +27,23 @@ export default function ContactPage() {
       >
         שלחו לנו הודעה בוואטסאפ
       </a>
+
+      <div className="mt-10">
+        <iframe
+          title="המיקום שלנו במפה"
+          src="https://maps.google.com/maps?q=%D7%A8%D7%97%D7%95%D7%91%20%D7%A1%D7%95%D7%A7%D7%95%D7%9C%D7%95%D7%91%2020%2C%20%D7%97%D7%95%D7%9C%D7%95%D7%9F&output=embed"
+          className="w-full h-64 border border-black/10"
+          loading="lazy"
+        />
+        <a
+          href="https://share.google/l4zXlMKIljRP2TcZy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-3 text-[11px] tracking-wide uppercase text-ink/70 hover:text-ink transition-colors border-b border-ink/30"
+        >
+          פתח בגוגל מפות
+        </a>
+      </div>
     </div>
   );
 }

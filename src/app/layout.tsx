@@ -57,6 +57,35 @@ const parcelDeliveryJsonLd = {
   },
 };
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FlowerShop",
+  name: "פרחי ד' יתברך",
+  telephone: "+972528980414",
+  priceRange: "₪₪",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "רחוב סוקולוב 20",
+    addressLocality: "חולון",
+    addressCountry: "IL",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+      opens: "09:00",
+      closes: "20:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Friday"],
+      opens: "09:00",
+      closes: "14:00",
+    },
+  ],
+  hasMap: "https://share.google/l4zXlMKIljRP2TcZy",
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -65,6 +94,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${heading.variable} ${body.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-paper text-ink">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(parcelDeliveryJsonLd) }}
