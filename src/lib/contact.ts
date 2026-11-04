@@ -1,6 +1,7 @@
 export const PHONE_DISPLAY = "052-898-0414";
 export const PHONE_LOCAL = "0528980414";
 export const WHATSAPP_URL = "https://wa.me/972528980414";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://elad-flowers.vercel.app";
 // A/B testing — routes to the owner's personal inbox for now.
 export const CONTACT_EMAIL = "elad200226@gmail.com";
 

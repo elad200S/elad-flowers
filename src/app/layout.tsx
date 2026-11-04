@@ -8,6 +8,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import CartDrawer from "@/components/cart/CartDrawer";
+import { SITE_URL } from "@/lib/contact";
 
 const heading = Frank_Ruhl_Libre({
   variable: "--font-heading",
@@ -21,39 +22,21 @@ const body = Heebo({
   weight: ["300", "400", "500", "600"],
 });
 
-export const metadata: Metadata = {
-  title: "פרחי ד' יתברך | זרים בעיצוב אישי בחולון",
-  description: "זרים בעיצוב אישי עם משלוח עד הבית בחולון והסביבה. פרחים טריים, עיצוב בוטיק ושירות אישי.",
-};
+const title = "פרחי ד' יתברך | זרים בעיצוב אישי בחולון";
+const description = "זרים בעיצוב אישי עם משלוח עד הבית בחולון והסביבה. פרחים טריים, עיצוב בוטיק ושירות אישי.";
 
-const parcelDeliveryJsonLd = {
-  "@context": "http://schema.org",
-  "@type": "ParcelDelivery",
-  deliveryAddress: {
-    "@type": "PostalAddress",
-    streetAddress: "רחוב סוקולוב 20",
-    addressLocality: "חולון",
-    addressCountry: "IL",
-  },
-  expectedArrivalUntil: "2026-10-26T13:00:00+02:00",
-  carrier: {
-    "@type": "Organization",
-    name: "שליחויות בוטיק",
-  },
-  itemShipped: {
-    "@type": "Product",
-    name: "זר ורדים קלאסי",
-  },
-  trackingNumber: "12345678",
-  trackingUrl: "https://your-shop-domain.co.il/track/12345678",
-  partOfOrder: {
-    "@type": "Order",
-    orderNumber: "1001",
-    merchant: {
-      "@type": "Organization",
-      name: "שם חנות הפרחים",
-    },
-    orderStatus: "http://schema.org/OrderInTransit",
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: SITE_URL,
+    siteName: "פרחי ד' יתברך",
+    locale: "he_IL",
+    type: "website",
+    images: [{ url: "/hero/rotator/mid-pink.jpg", width: 1200, height: 630 }],
   },
 };
 
@@ -61,6 +44,7 @@ const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "FlowerShop",
   name: "פרחי ד' יתברך",
+  url: SITE_URL,
   telephone: "+972528980414",
   priceRange: "₪₪",
   address: {
@@ -97,10 +81,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(parcelDeliveryJsonLd) }}
         />
         <CartProvider>
           <WishlistProvider>
