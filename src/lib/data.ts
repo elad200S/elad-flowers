@@ -42,6 +42,12 @@ export const deliveryZones: DeliveryZone[] = [
 
 export const RUSH_DELIVERY_COST = 30;
 
+export const deliveryTimeSlots: { id: string; label: string }[] = [
+  { id: "9-13", label: "09:00–13:00" },
+  { id: "13-17", label: "13:00–17:00" },
+  { id: "17-20", label: "17:00–20:00" },
+];
+
 export const addOns: AddOn[] = [
   { id: "card", label: "כרטיס ברכה", price: 15, hasTextArea: true },
   { id: "chocolate", label: "קופסת שוקולד", price: 35 },

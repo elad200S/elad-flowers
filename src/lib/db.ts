@@ -21,6 +21,7 @@ export interface Order {
   street: string;
   floor: string | null;
   delivery_date: string;
+  delivery_time: string | null;
   rush_delivery: boolean;
   card_message: string | null;
   payment_method: string;
@@ -54,6 +55,7 @@ async function ensureSchema() {
       street TEXT NOT NULL,
       floor TEXT,
       delivery_date DATE NOT NULL,
+      delivery_time TEXT,
       rush_delivery BOOLEAN NOT NULL DEFAULT false,
       card_message TEXT,
       payment_method TEXT NOT NULL,
@@ -63,8 +65,9 @@ async function ensureSchema() {
       fulfilled BOOLEAN NOT NULL DEFAULT false
     )
   `;
-  // Table may already exist from before this column was added.
+  // Table may already exist from before these columns were added.
   await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS sender_email TEXT NOT NULL DEFAULT ''`;
+  await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS delivery_time TEXT`;
 }
 
 function withSchema<T>(fn: () => Promise<T>): Promise<T> {
@@ -82,6 +85,7 @@ export interface NewOrder {
   street: string;
   floor: string;
   deliveryDate: string;
+  deliveryTime: string;
   rushDelivery: boolean;
   cardMessage: string;
   paymentMethod: string;
@@ -96,11 +100,11 @@ export async function createOrder(order: NewOrder): Promise<Order> {
     const rows = await sql`
       INSERT INTO orders (
         sender_name, sender_phone, sender_email, recipient_name, recipient_phone,
-        city, street, floor, delivery_date, rush_delivery, card_message,
+        city, street, floor, delivery_date, delivery_time, rush_delivery, card_message,
         payment_method, items, delivery_cost, total
       ) VALUES (
         ${order.senderName}, ${order.senderPhone}, ${order.senderEmail}, ${order.recipientName}, ${order.recipientPhone},
-        ${order.city}, ${order.street}, ${order.floor || null}, ${order.deliveryDate}, ${order.rushDelivery}, ${order.cardMessage || null},
+        ${order.city}, ${order.street}, ${order.floor || null}, ${order.deliveryDate}, ${order.deliveryTime || null}, ${order.rushDelivery}, ${order.cardMessage || null},
         ${order.paymentMethod}, ${JSON.stringify(order.items)}, ${order.deliveryCost}, ${order.total}
       )
       RETURNING *

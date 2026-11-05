@@ -54,6 +54,7 @@ export default async function AdminOrderDetailPage({
           <p className="text-[11px] tracked-xs uppercase text-ink/50 mb-2">תאריך משלוח</p>
           <p className="text-ink">
             {formatDate(order.delivery_date)}
+            {order.delivery_time ? ` · ${order.delivery_time}` : ""}
             {order.rush_delivery ? " · משלוח מהיר" : ""}
           </p>
         </section>

@@ -4,7 +4,17 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
-import { deliveryZones, RUSH_DELIVERY_COST } from "@/lib/data";
+import { deliveryZones, deliveryTimeSlots, RUSH_DELIVERY_COST } from "@/lib/data";
+
+function CheckoutBackground() {
+  return (
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute -top-24 -right-24 w-[26rem] h-[26rem] rounded-full bg-accent-soft/60 blur-3xl" />
+      <div className="absolute top-1/3 -left-32 w-[22rem] h-[22rem] rounded-full bg-accent-soft/50 blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-accent-soft/40 blur-3xl" />
+    </div>
+  );
+}
 
 const paymentOptions = [
   { id: "bit", label: "ביט" },
@@ -47,6 +57,7 @@ export default function CheckoutPage() {
           street: form.get("street"),
           floor: form.get("floor"),
           deliveryDate: form.get("deliveryDate"),
+          deliveryTime: form.get("deliveryTime"),
           rushDelivery,
           cardMessage: form.get("cardMessage"),
           paymentMethod: paymentOptions.find((p) => p.id === payment)?.label ?? payment,
@@ -80,37 +91,47 @@ export default function CheckoutPage() {
 
   if (placed) {
     return (
-      <div className="mx-auto max-w-xl px-6 py-24 text-center">
-        <h1 className="font-serif text-3xl text-ink">ההזמנה התקבלה בהצלחה!</h1>
-        <p className="text-ink/70 mt-4">
-          שלחנו אישור למייל שלכם, ונשלח גם תמונה של הזר לפני המשלוח.
-        </p>
-        <Link
-          href="/"
-          className="inline-block mt-8 rounded-lg bg-accent text-white px-8 py-3 hover:brightness-110 transition-all"
-        >
-          חזרה לדף הבית
-        </Link>
+      <div className="relative">
+        <CheckoutBackground />
+        <div className="mx-auto max-w-xl px-6 py-24 text-center">
+          <Image src="/logo-icon.png" alt="" width={56} height={56} className="mx-auto object-contain" />
+          <h1 className="font-serif text-3xl text-ink mt-4">ההזמנה התקבלה בהצלחה!</h1>
+          <p className="text-ink/70 mt-4">
+            שלחנו אישור למייל שלכם, ונשלח גם תמונה של הזר לפני המשלוח.
+          </p>
+          <Link
+            href="/"
+            className="inline-block mt-8 rounded-lg bg-accent text-white px-8 py-3 hover:brightness-110 transition-all"
+          >
+            חזרה לדף הבית
+          </Link>
+        </div>
       </div>
     );
   }
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-xl px-6 py-24 text-center">
-        <h1 className="font-serif text-2xl text-ink">הסל שלך ריק</h1>
-        <Link
-          href="/"
-          className="inline-block mt-6 rounded-lg bg-accent text-white px-8 py-3 hover:brightness-110 transition-all"
-        >
-          לבחירת זר
-        </Link>
+      <div className="relative">
+        <CheckoutBackground />
+        <div className="mx-auto max-w-xl px-6 py-24 text-center">
+          <Image src="/logo-icon.png" alt="" width={56} height={56} className="mx-auto object-contain opacity-60" />
+          <h1 className="font-serif text-2xl text-ink mt-4">הסל שלך ריק</h1>
+          <Link
+            href="/"
+            className="inline-block mt-6 rounded-lg bg-accent text-white px-8 py-3 hover:brightness-110 transition-all"
+          >
+            לבחירת זר
+          </Link>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12 grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-10">
+    <div className="relative">
+      <CheckoutBackground />
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 py-12 grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-10">
       <form onSubmit={handleSubmit} className="space-y-10">
         <section>
           <h2 className="font-serif text-xl text-ink mb-4">פרטי השולח/ת</h2>
@@ -152,16 +173,28 @@ export default function CheckoutPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-ink mb-4">תאריך משלוח</h2>
-          <input
-            name="deliveryDate"
-            required
-            type="date"
-            min={today}
-            lang="he"
-            dir="rtl"
-            className="input sm:w-1/2"
-          />
+          <h2 className="font-serif text-xl text-ink mb-4">תאריך ושעת משלוח</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input
+              name="deliveryDate"
+              required
+              type="date"
+              min={today}
+              lang="he"
+              dir="rtl"
+              className="input"
+            />
+            <select name="deliveryTime" required defaultValue="" className="input">
+              <option value="" disabled>
+                בחרו שעת משלוח
+              </option>
+              {deliveryTimeSlots.map((slot) => (
+                <option key={slot.id} value={slot.label}>
+                  {slot.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <label className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-black/15 px-4 py-3 cursor-pointer">
             <span className="flex items-center gap-3">
@@ -214,8 +247,18 @@ export default function CheckoutPage() {
       </form>
 
       {/* Order summary */}
-      <aside className="bg-white/60 rounded-xl border border-black/10 p-6 h-fit">
-        <h2 className="font-serif text-lg text-ink mb-4">סיכום הזמנה</h2>
+      <aside className="relative bg-white/70 backdrop-blur-sm rounded-xl border border-black/10 p-6 h-fit overflow-hidden">
+        <Image
+          src="/logo-icon.png"
+          alt=""
+          width={90}
+          height={90}
+          className="absolute -top-3 -left-3 object-contain opacity-[0.08] pointer-events-none"
+        />
+        <h2 className="font-serif text-lg text-ink mb-4 flex items-center gap-2">
+          <Image src="/logo-icon.png" alt="" width={20} height={20} className="object-contain" />
+          סיכום הזמנה
+        </h2>
         <ul className="space-y-4">
           {items.map((item) => {
             const addOnsTotal = item.addOns.reduce((s, a) => s + a.price, 0);
@@ -251,6 +294,7 @@ export default function CheckoutPage() {
           <span>{total} ₪</span>
         </div>
       </aside>
+      </div>
     </div>
   );
 }

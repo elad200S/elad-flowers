@@ -50,15 +50,20 @@ function itemsHtml(items: OrderItem[]) {
     .join("");
 }
 
+const ACCENT = "#7e1c2e";
+const ACCENT_SOFT = "#fadad1";
+
 function emailShell(opts: { title: string; preheader: string; body: string }) {
+  const logoUrl = `${SITE_URL}/logo-icon.png`;
   return `
-    <div dir="rtl" style="font-family: Arial, sans-serif; background:#f7f6f4; padding:24px 12px;">
+    <div dir="rtl" style="font-family: Arial, sans-serif; background:${ACCENT_SOFT}; padding:28px 12px;">
       <span style="display:none;max-height:0;overflow:hidden;">${opts.preheader}</span>
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border:1px solid #ececec;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #ececec;">
         <tr>
-          <td style="padding:28px 28px 20px;text-align:center;border-bottom:2px solid ${INK};">
-            <div style="font-family: Georgia, 'Times New Roman', serif; font-size:22px; letter-spacing:0.03em; color:${INK};">
-              🌸 פרחי ד' יתברך
+          <td style="padding:26px 28px 18px;text-align:center;background:${ACCENT_SOFT};border-bottom:2px solid ${ACCENT};">
+            <img src="${logoUrl}" width="40" height="40" alt="" style="display:block;margin:0 auto 6px;width:40px;height:40px;object-fit:contain;" />
+            <div style="font-family: Georgia, 'Times New Roman', serif; font-size:21px; letter-spacing:0.03em; color:${ACCENT};">
+              פרחי ד' יתברך
             </div>
           </td>
         </tr>
@@ -69,7 +74,7 @@ function emailShell(opts: { title: string; preheader: string; body: string }) {
         </tr>
         <tr>
           <td style="padding:18px 28px;background:#fafafa;border-top:1px solid #ececec;text-align:center;">
-            <div style="font-family: Arial, sans-serif;font-size:11px;color:#9a9a9a;">פרחי ד' יתברך · חולון</div>
+            <div style="font-family: Arial, sans-serif;font-size:11px;color:#9a9a9a;">פרחי ד' יתברך · חולון 🌸</div>
           </td>
         </tr>
       </table>
@@ -97,6 +102,7 @@ export async function sendOrderNotificationEmail(order: Order) {
       <tr><td style="padding:3px 0;"><strong>מקבל/ת:</strong></td><td align="left">${order.recipient_name} · ${order.recipient_phone}</td></tr>
       <tr><td style="padding:3px 0;"><strong>כתובת:</strong></td><td align="left">${order.city}, ${order.street}${order.floor ? `, ${order.floor}` : ""}</td></tr>
       <tr><td style="padding:3px 0;"><strong>תאריך משלוח:</strong></td><td align="left">${formatDate(order.delivery_date)}${order.rush_delivery ? " (מהיר)" : ""}</td></tr>
+      ${order.delivery_time ? `<tr><td style="padding:3px 0;"><strong>שעת משלוח:</strong></td><td align="left">${order.delivery_time}</td></tr>` : ""}
       ${order.card_message ? `<tr><td style="padding:3px 0;"><strong>ברכה:</strong></td><td align="left">${order.card_message}</td></tr>` : ""}
       <tr><td style="padding:3px 0;"><strong>תשלום:</strong></td><td align="left">${order.payment_method}</td></tr>
     </table>
@@ -142,7 +148,7 @@ export async function sendCustomerConfirmationEmail(order: Order) {
         <td style="padding:14px 16px;font-size:13px;color:${INK};">
           <strong>משלוח ל${order.recipient_name}</strong><br/>
           ${order.city}, ${order.street}${order.floor ? `, ${order.floor}` : ""}<br/>
-          <strong>תאריך:</strong> ${formatDate(order.delivery_date)}${order.rush_delivery ? " (משלוח מהיר)" : ""}
+          <strong>תאריך:</strong> ${formatDate(order.delivery_date)}${order.delivery_time ? ` · ${order.delivery_time}` : ""}${order.rush_delivery ? " (משלוח מהיר)" : ""}
         </td>
       </tr>
     </table>

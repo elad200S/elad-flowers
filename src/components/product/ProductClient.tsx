@@ -14,8 +14,6 @@ export default function ProductClient({ product }: { product: Product }) {
   const [selectedSize, setSelectedSize] = useState<Size>(defaultSize.size);
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [cardText, setCardText] = useState("");
-  const [deliveryDate, setDeliveryDate] = useState("");
-  const [deliveryTime, setDeliveryTime] = useState("");
   const [added, setAdded] = useState(false);
 
   const sizeOption = product.sizes.find((s) => s.size === selectedSize) ?? defaultSize;
@@ -124,32 +122,6 @@ export default function ProductClient({ product }: { product: Product }) {
                     </div>
                   );
                 })}
-              </div>
-            </div>
-
-            {/* Delivery date & time */}
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-[11px] tracked-xs uppercase text-ink/50 mb-2 block">תאריך משלוח</label>
-                <input
-                  type="date"
-                  value={deliveryDate}
-                  onChange={(e) => setDeliveryDate(e.target.value)}
-                  className="input"
-                />
-              </div>
-              <div>
-                <label className="text-[11px] tracked-xs uppercase text-ink/50 mb-2 block">שעת משלוח</label>
-                <select
-                  value={deliveryTime}
-                  onChange={(e) => setDeliveryTime(e.target.value)}
-                  className="input"
-                >
-                  <option value="">בחרו שעה</option>
-                  <option value="9-13">09:00–13:00</option>
-                  <option value="13-17">13:00–17:00</option>
-                  <option value="17-20">17:00–20:00</option>
-                </select>
               </div>
             </div>
 
