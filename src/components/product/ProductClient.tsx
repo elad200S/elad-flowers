@@ -55,7 +55,7 @@ export default function ProductClient({ product }: { product: Product }) {
     <div className="pb-28 md:pb-0">
       <div className="md:grid md:grid-cols-2">
         {/* Sticky details */}
-        <div className="md:sticky md:top-20 md:self-start md:h-[calc(100vh-5rem)] md:overflow-y-auto">
+        <div className="md:sticky md:top-20 md:self-start">
           <div className="px-6 py-10 md:px-14 md:py-16 max-w-md md:ml-auto">
             <h1 className="font-serif text-3xl sm:text-4xl text-ink">{product.title}</h1>
             <p className="text-ink/60 mt-3 leading-7 text-sm font-light">{product.longDescription}</p>
