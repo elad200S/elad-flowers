@@ -5,8 +5,8 @@ import { categories } from "@/lib/data";
 export default function CategoryCircles() {
   return (
     <section className="py-10 md:py-14">
-      <div className="mx-auto max-w-4xl px-4">
-        <div className="flex gap-8 sm:gap-12 overflow-x-auto no-scrollbar md:justify-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-10">
+        <div className="flex gap-8 overflow-x-auto no-scrollbar md:justify-between">
           {categories.map((category) => (
             <Link
               key={category.slug}

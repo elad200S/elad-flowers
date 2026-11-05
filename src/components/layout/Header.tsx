@@ -9,9 +9,17 @@ import { productTypes } from "@/lib/data";
 import SearchOverlay from "./SearchOverlay";
 import Logo from "./Logo";
 
+// Shorter labels for the nav bar specifically — full names are still used
+// everywhere else (shop filters, category page titles, etc.).
+const shortLabels: Partial<Record<string, string>> = {
+  arrangement: "סידורי פרחים",
+  "chocolate-wine": "שוקולד ויין",
+  balloon: "בלונים",
+};
+
 const navLinks = [
   { href: "/shop", label: "כל המוצרים" },
-  ...productTypes.map((t) => ({ href: `/shop/${t.slug}`, label: t.title })),
+  ...productTypes.map((t) => ({ href: `/shop/${t.slug}`, label: shortLabels[t.slug] ?? t.title })),
   { href: "/about", label: "אודות" },
   { href: "/contact", label: "צור קשר" },
 ];
@@ -38,7 +46,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-5 lg:gap-7 overflow-x-auto no-scrollbar mx-4">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7 overflow-x-auto no-scrollbar mx-4 flex-1 min-w-0">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -50,7 +58,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 shrink-0">
           <button
             aria-label="חיפוש"
             onClick={() => setSearchOpen(true)}
