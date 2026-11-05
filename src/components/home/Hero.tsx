@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, Pause, Play } from "lucide-react";
 
 const slides = [
   {
@@ -34,17 +34,44 @@ const slides = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  const [autoPaused, setAutoPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const [hovering, setHovering] = useState(false);
+  const paused = autoPaused || userPaused || hovering;
+
+  // WCAG 2.2.2 (Pause, Stop, Hide): auto-advancing content needs a way to
+  // stop it. We honor the OS-level reduced-motion preference, our own
+  // accessibility widget's "stop animations" toggle, hover/focus, and a
+  // visible manual pause button.
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const checkA11yStop = () => document.documentElement.classList.contains("a11y-stop-animations");
+
+    const update = () => setAutoPaused(prefersReduced || checkA11yStop());
+    update();
+
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 5500);
+    if (paused) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 3000);
     return () => clearInterval(id);
-  }, []);
+  }, [paused]);
 
   const slide = slides[index];
 
   return (
     <section className="relative w-full">
-      <div className="relative h-[52vh] md:h-[68vh] w-full overflow-hidden">
+      <div
+        className="relative h-[52vh] md:h-[68vh] w-full overflow-hidden"
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+        onFocus={() => setHovering(true)}
+        onBlur={() => setHovering(false)}
+      >
         {slides.map((s, i) => (
           <div
             key={s.image}
@@ -79,21 +106,31 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
-          {slides.map((s, i) => (
-            <button
-              key={s.image}
-              type="button"
-              aria-label={`שקופית ${i + 1}`}
-              onClick={() => setIndex(i)}
-              className="h-1.5 rounded-full transition-all"
-              style={{
-                width: i === index ? 22 : 8,
-                backgroundColor: "white",
-                opacity: i === index ? 1 : 0.5,
-              }}
-            />
-          ))}
+        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10">
+          <div className="flex items-center gap-2">
+            {slides.map((s, i) => (
+              <button
+                key={s.image}
+                type="button"
+                aria-label={`שקופית ${i + 1}`}
+                onClick={() => setIndex(i)}
+                className="h-1.5 rounded-full transition-all"
+                style={{
+                  width: i === index ? 22 : 8,
+                  backgroundColor: "white",
+                  opacity: i === index ? 1 : 0.5,
+                }}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            aria-label={userPaused ? "המשך החלפת שקופיות" : "עצור החלפת שקופיות"}
+            onClick={() => setUserPaused((p) => !p)}
+            className="w-6 h-6 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+          >
+            {userPaused ? <Play size={11} /> : <Pause size={11} />}
+          </button>
         </div>
       </div>
 
